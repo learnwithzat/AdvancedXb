@@ -4,39 +4,47 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 
 export function CTASection() {
 	return (
-		<section className='py-20'>
-			<div className='container'>
+		<section
+			className='py-20'
+			style={{ background: 'hsl(var(--foreground))' }}>
+			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12'>
 				<motion.div
-					initial={{ opacity: 0, scale: 0.95 }}
-					whileInView={{ opacity: 1, scale: 1 }}
-					transition={{ duration: 0.5 }}
+					initial={{ opacity: 0, y: 16 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
 					viewport={{ once: true }}
-					className='relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 md:p-12 text-center text-white'>
-					<div className='absolute inset-0 bg-black/10' />
-					<div className='relative z-10'>
-						<h2 className='text-3xl md:text-4xl font-bold mb-4'>
-							Ready to Transform Your Business?
-						</h2>
-						<p className='text-lg mb-8 max-w-2xl mx-auto opacity-90'>
-							Let's discuss how we can help you build the perfect software
-							solution for your needs.
+					className='flex flex-col md:flex-row items-start md:items-center justify-between gap-8'>
+					<div>
+						<p
+							className='text-xs font-semibold uppercase tracking-widest mb-2'
+							style={{ color: 'hsl(var(--silver))' }}>
+							Ready to start?
 						</p>
-
-						<Link href='#contact'>
-							<Button
-								size='lg'
-								variant='secondary'>
-								Get Started Today
-								<ArrowRight className='ml-2 h-4 w-4' />
-							</Button>
-						</Link>
+						<h2
+							className='font-heading font-extrabold tracking-tighter leading-none mb-2'
+							style={{
+								fontSize: 'clamp(1.6rem, 3vw, 2.75rem)',
+								color: '#ffffff',
+							}}>
+							Transform Your Business Today
+						</h2>
+						<p
+							className='text-sm font-light max-w-md leading-relaxed'
+							style={{ color: 'rgba(255,255,255,0.4)' }}>
+							Let&apos;s discuss how we can build the perfect software solution
+							for your specific needs.
+						</p>
 					</div>
+
+					<Link
+						href='#contact'
+						className='btn-ghost-light flex-none whitespace-nowrap'>
+						Get Started →
+					</Link>
 				</motion.div>
 			</div>
 		</section>

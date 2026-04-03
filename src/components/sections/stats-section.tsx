@@ -5,37 +5,49 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Users, Code2, Globe2, Award } from 'lucide-react';
 
-const stats = [
-	{ icon: Users, value: 500, label: 'Happy Clients', suffix: '+' },
-	{ icon: Code2, value: 120, label: 'Projects Completed', suffix: '+' },
-	{ icon: Globe2, value: 25, label: 'Countries', suffix: '' },
-	{ icon: Award, value: 15, label: 'Awards Won', suffix: '' },
+const STATS = [
+	{ value: '500+', label: 'Happy Clients' },
+	{ value: '120+', label: 'Projects Completed' },
+	{ value: '25', label: 'Countries Served' },
+	{ value: '15', label: 'Awards Won' },
 ];
 
 export function StatsSection() {
-	const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+	const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
 	return (
-		<section className='py-16 bg-primary text-primary-foreground'>
-			<div className='container'>
-				<div
-					ref={ref}
-					className='grid grid-cols-2 md:grid-cols-4 gap-8'>
-					{stats.map((stat, index) => (
+		<section
+			ref={ref}
+			style={{ background: 'hsl(var(--foreground))' }}>
+			<div className='max-w-7xl mx-auto'>
+				<div className='grid grid-cols-2 md:grid-cols-4'>
+					{STATS.map((stat, i) => (
 						<motion.div
-							key={index}
-							initial={{ opacity: 0, y: 20 }}
+							key={i}
+							initial={{ opacity: 0, y: 12 }}
 							animate={inView ? { opacity: 1, y: 0 } : {}}
-							transition={{ duration: 0.5, delay: index * 0.1 }}
-							className='text-center'>
-							<stat.icon className='h-10 w-10 mx-auto mb-3' />
-							<div className='text-3xl md:text-4xl font-bold'>
-								{inView ? stat.value : 0}
-								{stat.suffix}
+							transition={{ duration: 0.5, delay: i * 0.1 }}
+							className='px-8 py-9 text-center md:text-left'
+							style={{
+								borderRight:
+									i < STATS.length - 1 ?
+										'1px solid rgba(255,255,255,0.08)'
+									:	'none',
+							}}>
+							<div
+								className='font-heading font-extrabold tracking-tighter leading-none mb-1'
+								style={{
+									fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
+									color: '#ffffff',
+								}}>
+								{stat.value}
 							</div>
-							<div className='text-sm opacity-90 mt-1'>{stat.label}</div>
+							<div
+								className='text-xs uppercase tracking-widest'
+								style={{ color: 'rgba(255,255,255,0.35)' }}>
+								{stat.label}
+							</div>
 						</motion.div>
 					))}
 				</div>

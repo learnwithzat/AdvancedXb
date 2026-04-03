@@ -6,8 +6,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -19,12 +17,10 @@ const navItems = [
 
 export function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isMobileOpen, setIsMobileOpen] = useState(false);
 
 	useEffect(() => {
-		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 10);
-		};
+		const handleScroll = () => setIsScrolled(window.scrollY > 12);
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
@@ -32,74 +28,88 @@ export function Navbar() {
 	return (
 		<header
 			className={cn(
-				'fixed top-0 z-50 w-full transition-all duration-300',
+				'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
 				isScrolled ?
-					'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b'
+					'bg-background/90 backdrop-blur-xl border-b border-border'
 				:	'bg-transparent',
 			)}>
-			<div className='container flex h-16 items-center justify-between'>
+			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-4 flex items-center justify-between'>
+				{/* Logo */}
 				<Link
 					href='/'
-					className='flex items-center space-x-2'>
-					<span className='text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent'>
-						ZatGo
+					className='font-heading font-extrabold text-xl tracking-tight'>
+					<span className='text-foreground'>Zat</span>
+					<span
+						style={{ color: 'hsl(var(--chrome))' }}
+						className='text-foreground'>
+						Go
 					</span>
-					<span className='text-2xl font-bold'>Innovation</span>
+					<span className='text-foreground'> Innovation</span>
 				</Link>
 
-				{/* Desktop Navigation */}
-				<nav className='hidden md:flex items-center gap-6'>
+				{/* Desktop nav */}
+				<nav className='hidden md:flex items-center gap-8'>
 					{navItems.map((item) => (
 						<Link
 							key={item.name}
 							href={item.href}
-							className='text-sm font-medium transition-colors hover:text-primary'>
+							className='text-sm tracking-wide transition-colors'
+							style={{ color: 'hsl(var(--text-3))' }}
+							onMouseEnter={(e) =>
+								((e.target as HTMLElement).style.color =
+									'hsl(var(--foreground))')
+							}
+							onMouseLeave={(e) =>
+								((e.target as HTMLElement).style.color = 'hsl(var(--text-3))')
+							}>
 							{item.name}
 						</Link>
 					))}
-					<ThemeToggle />
-
-					<Link href='#contact'>
-						<Button>Get Quote</Button>
-					</Link>
 				</nav>
 
-				{/* Mobile Navigation */}
-				<div className='flex items-center gap-2 md:hidden'>
-					<ThemeToggle />
-					<Button
-						variant='ghost'
-						size='icon'
-						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-						{isMobileMenuOpen ?
-							<X />
-						:	<Menu />}
-					</Button>
+				{/* CTA */}
+				<div className='hidden md:flex items-center gap-3'>
+					<Link
+						href='#contact'
+						className='btn-sharp text-xs px-5 py-2.5'>
+						Get Quote
+					</Link>
 				</div>
 
-				{/* Mobile Menu */}
-				{isMobileMenuOpen && (
-					<div className='absolute top-16 left-0 right-0 bg-background border-b shadow-lg md:hidden animate-in slide-in-from-top-5'>
-						<nav className='container flex flex-col py-4 gap-3'>
-							{navItems.map((item) => (
-								<Link
-									key={item.name}
-									href={item.href}
-									className='text-sm font-medium transition-colors hover:text-primary py-2'
-									onClick={() => setIsMobileMenuOpen(false)}>
-									{item.name}
-								</Link>
-							))}
-
-							<Link
-								href='#contact'
-								onClick={() => setIsMobileMenuOpen(false)}>
-								<Button className='mt-2'>Get Quote</Button>
-							</Link>
-						</nav>
-					</div>
-				)}
+				{/* Mobile toggle */}
+				<button
+					className='md:hidden p-2 text-foreground'
+					onClick={() => setIsMobileOpen(!isMobileOpen)}
+					aria-label='Toggle menu'>
+					{isMobileOpen ?
+						<X size={20} />
+					:	<Menu size={20} />}
+				</button>
 			</div>
+
+			{/* Mobile menu */}
+			{isMobileOpen && (
+				<div className='md:hidden bg-background border-b border-border animate-fade-up'>
+					<nav className='max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1'>
+						{navItems.map((item) => (
+							<Link
+								key={item.name}
+								href={item.href}
+								className='py-3 text-sm border-b border-border last:border-0'
+								style={{ color: 'hsl(var(--text-3))' }}
+								onClick={() => setIsMobileOpen(false)}>
+								{item.name}
+							</Link>
+						))}
+						<Link
+							href='#contact'
+							className='btn-sharp mt-3 justify-center'
+							onClick={() => setIsMobileOpen(false)}>
+							Get Quote
+						</Link>
+					</nav>
+				</div>
+			)}
 		</header>
 	);
 }

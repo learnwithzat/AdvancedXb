@@ -5,114 +5,187 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const testimonials = [
+const TESTIMONIALS = [
 	{
+		initials: 'SJ',
 		name: 'Sarah Johnson',
 		role: 'CEO, TechStart Inc.',
-		content:
-			'ZatGo transformed our business with their custom ERP solution. Our efficiency has increased by 40%!',
-		rating: 5,
-		avatar: 'SJ',
+		quote:
+			'ZatGo transformed our business with their custom ERP solution. Our efficiency has increased by 40% — it has been a complete game changer for our operations.',
 	},
 	{
+		initials: 'MC',
 		name: 'Michael Chen',
 		role: 'CTO, InnovateCorp',
-		content:
-			"The team's expertise in mobile development helped us launch our app ahead of schedule. Highly recommended!",
-		rating: 5,
-		avatar: 'MC',
+		quote:
+			"The team's expertise in mobile development helped us launch our app ahead of schedule and under budget. Incredibly professional from start to finish.",
 	},
 	{
+		initials: 'ER',
 		name: 'Emily Rodriguez',
 		role: 'Operations Director, RetailPro',
-		content:
-			'Our POS system has never been better. The support team is responsive and knowledgeable.',
-		rating: 5,
-		avatar: 'ER',
+		quote:
+			'Our POS system has never worked better. The support team is always responsive and deeply knowledgeable. We could not ask for a better partner.',
+	},
+	{
+		initials: 'DK',
+		name: 'Daniel Kim',
+		role: 'Founder, ScaleUp Labs',
+		quote:
+			'From concept to deployment in 3 weeks. The engineering quality is top-tier and the communication was seamless throughout the entire project.',
 	},
 ];
 
 export function TestimonialsSection() {
 	const [current, setCurrent] = useState(0);
 
-	const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
 	const prev = () =>
-		setCurrent(
-			(prev) => (prev - 1 + testimonials.length) % testimonials.length,
-		);
+		setCurrent((c) => (c - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+	const next = () => setCurrent((c) => (c + 1) % TESTIMONIALS.length);
+
+	const t = TESTIMONIALS[current];
 
 	return (
-		<section className='py-20 bg-primary/5'>
-			<div className='container'>
-				<div className='text-center max-w-3xl mx-auto mb-12'>
-					<h2 className='text-3xl md:text-4xl font-bold mb-4'>
-						What Our Clients Say
-					</h2>
-					<p className='text-muted-foreground text-lg'>
-						Trusted by businesses worldwide
-					</p>
+		<section
+			id='testimonials'
+			className='py-24'
+			style={{ background: 'hsl(var(--secondary))' }}>
+			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12'>
+				{/* Header */}
+				<div className='flex items-end justify-between mb-10 flex-wrap gap-4'>
+					<div>
+						<div className='section-eyebrow mb-3'>Client stories</div>
+						<h2
+							className='font-heading font-extrabold tracking-tighter leading-none'
+							style={{ fontSize: 'clamp(1.75rem, 3.5vw, 3rem)' }}>
+							What Our Clients Say
+						</h2>
+					</div>
+					<div className='flex gap-2'>
+						<button
+							onClick={prev}
+							className='w-10 h-10 flex items-center justify-center border transition-all'
+							style={{
+								borderColor: 'hsl(var(--border))',
+								color: 'hsl(var(--text-3))',
+							}}
+							onMouseEnter={(e) => {
+								(e.currentTarget as HTMLElement).style.background =
+									'hsl(var(--foreground))';
+								(e.currentTarget as HTMLElement).style.color =
+									'hsl(var(--background))';
+								(e.currentTarget as HTMLElement).style.borderColor =
+									'hsl(var(--foreground))';
+							}}
+							onMouseLeave={(e) => {
+								(e.currentTarget as HTMLElement).style.background =
+									'transparent';
+								(e.currentTarget as HTMLElement).style.color =
+									'hsl(var(--text-3))';
+								(e.currentTarget as HTMLElement).style.borderColor =
+									'hsl(var(--border))';
+							}}
+							aria-label='Previous'>
+							<ChevronLeft size={16} />
+						</button>
+						<button
+							onClick={next}
+							className='w-10 h-10 flex items-center justify-center border transition-all'
+							style={{
+								borderColor: 'hsl(var(--border))',
+								color: 'hsl(var(--text-3))',
+							}}
+							onMouseEnter={(e) => {
+								(e.currentTarget as HTMLElement).style.background =
+									'hsl(var(--foreground))';
+								(e.currentTarget as HTMLElement).style.color =
+									'hsl(var(--background))';
+								(e.currentTarget as HTMLElement).style.borderColor =
+									'hsl(var(--foreground))';
+							}}
+							onMouseLeave={(e) => {
+								(e.currentTarget as HTMLElement).style.background =
+									'transparent';
+								(e.currentTarget as HTMLElement).style.color =
+									'hsl(var(--text-3))';
+								(e.currentTarget as HTMLElement).style.borderColor =
+									'hsl(var(--border))';
+							}}
+							aria-label='Next'>
+							<ChevronRight size={16} />
+						</button>
+					</div>
 				</div>
 
-				<div className='max-w-4xl mx-auto relative'>
-					<AnimatePresence mode='wait'>
-						<motion.div
-							key={current}
-							initial={{ opacity: 0, x: 100 }}
-							animate={{ opacity: 1, x: 0 }}
-							exit={{ opacity: 0, x: -100 }}
-							transition={{ duration: 0.3 }}>
-							<Card className='bg-background'>
-								<CardContent className='p-8'>
-									<div className='flex gap-1 mb-4'>
-										{[...Array(testimonials[current].rating)].map((_, i) => (
-											<Star
-												key={i}
-												className='h-5 w-5 fill-yellow-400 text-yellow-400'
-											/>
-										))}
-									</div>
-									<p className='text-lg mb-6'>
-										"{testimonials[current].content}"
-									</p>
-									<div className='flex items-center gap-4'>
-										<Avatar>
-											<AvatarFallback>
-												{testimonials[current].avatar}
-											</AvatarFallback>
-										</Avatar>
-										<div>
-											<p className='font-semibold'>
-												{testimonials[current].name}
-											</p>
-											<p className='text-sm text-muted-foreground'>
-												{testimonials[current].role}
-											</p>
-										</div>
-									</div>
-								</CardContent>
-							</Card>
-						</motion.div>
-					</AnimatePresence>
+				{/* Card */}
+				<AnimatePresence mode='wait'>
+					<motion.div
+						key={current}
+						initial={{ opacity: 0, x: 30 }}
+						animate={{ opacity: 1, x: 0 }}
+						exit={{ opacity: 0, x: -30 }}
+						transition={{ duration: 0.35 }}
+						className='chrome-card p-8 md:p-10 max-w-2xl'>
+						{/* Stars */}
+						<div
+							className='text-sm tracking-widest mb-5'
+							style={{ color: 'hsl(var(--silver))' }}>
+							★★★★★
+						</div>
 
-					<div className='flex justify-center gap-2 mt-6'>
-						<Button
-							variant='outline'
-							size='icon'
-							onClick={prev}>
-							<ChevronLeft className='h-4 w-4' />
-						</Button>
-						<Button
-							variant='outline'
-							size='icon'
-							onClick={next}>
-							<ChevronRight className='h-4 w-4' />
-						</Button>
-					</div>
+						{/* Quote */}
+						<p
+							className='text-base leading-relaxed font-light italic mb-7'
+							style={{ color: 'hsl(var(--text-2))' }}>
+							&ldquo;{t.quote}&rdquo;
+						</p>
+
+						{/* Author */}
+						<div className='flex items-center gap-3'>
+							<div
+								className='w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold border flex-none'
+								style={{
+									background: 'hsl(var(--accent))',
+									borderColor: 'hsl(var(--border))',
+									color: 'hsl(var(--silver-dark))',
+								}}>
+								{t.initials}
+							</div>
+							<div>
+								<div
+									className='font-heading font-bold text-sm'
+									style={{ color: 'hsl(var(--foreground))' }}>
+									{t.name}
+								</div>
+								<div
+									className='text-xs'
+									style={{ color: 'hsl(var(--text-3))' }}>
+									{t.role}
+								</div>
+							</div>
+						</div>
+					</motion.div>
+				</AnimatePresence>
+
+				{/* Dots */}
+				<div className='flex gap-1.5 mt-6'>
+					{TESTIMONIALS.map((_, i) => (
+						<button
+							key={i}
+							onClick={() => setCurrent(i)}
+							className='h-1 transition-all'
+							style={{
+								width: i === current ? '20px' : '6px',
+								background:
+									i === current ?
+										'hsl(var(--silver-dark))'
+									:	'hsl(var(--border))',
+							}}
+							aria-label={`Go to testimonial ${i + 1}`}
+						/>
+					))}
 				</div>
 			</div>
 		</section>

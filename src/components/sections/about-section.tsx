@@ -4,29 +4,28 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Target, Lightbulb, Users, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 
 const ABOUT_ITEMS = [
 	{
-		icon: Target,
+		num: '01',
 		title: 'Our Mission',
 		desc: 'Empowering businesses with smart, scalable solutions that drive efficiency and long-term growth.',
 	},
 	{
-		icon: Lightbulb,
+		num: '02',
 		title: 'Our Vision',
 		desc: 'Becoming a global leader in software innovation and digital transformation.',
 	},
 	{
-		icon: Users,
+		num: '03',
 		title: 'Our Team',
-		desc: 'A passionate group of experts focused on delivering high-quality digital products.',
+		desc: 'A passionate group of experts focused on delivering high-quality digital products at scale.',
 	},
 	{
-		icon: TrendingUp,
+		num: '04',
 		title: 'Our Growth',
-		desc: 'Constantly evolving with modern technologies to serve our clients better.',
+		desc: 'Constantly evolving with modern technologies to serve our clients better every year.',
 	},
 ];
 
@@ -34,62 +33,80 @@ export function AboutSection() {
 	return (
 		<section
 			id='about'
-			className='py-20'>
-			<div className='container mx-auto px-6'>
-				<div className='grid lg:grid-cols-2 gap-12 items-center'>
-					{/* LEFT CONTENT */}
+			className='py-24'
+			style={{ background: 'hsl(var(--background))' }}>
+			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12'>
+				<div className='grid lg:grid-cols-2 gap-16 items-center'>
+					{/* Left */}
 					<motion.div
-						initial={{ opacity: 0, y: 30 }}
+						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6 }}
 						viewport={{ once: true }}>
-						<h2 className='text-3xl md:text-4xl font-bold mb-6'>
-							About ZatGo Innovation
+						<div className='section-eyebrow mb-3'>Who we are</div>
+						<h2
+							className='font-heading font-extrabold tracking-tighter leading-none mb-6'
+							style={{ fontSize: 'clamp(1.75rem, 3.5vw, 3rem)' }}>
+							Built to Build
+							<br />
+							What Matters
 						</h2>
 
-						<p className='text-muted-foreground text-lg mb-6 leading-relaxed'>
+						<p
+							className='text-sm leading-relaxed font-light mb-4'
+							style={{ color: 'hsl(var(--text-3))' }}>
 							ZatGo Innovation helps businesses transform ideas into powerful
 							digital solutions. We specialize in building scalable systems that
 							improve efficiency, automation, and growth.
 						</p>
-
-						<p className='text-muted-foreground mb-8 leading-relaxed'>
+						<p
+							className='text-sm leading-relaxed font-light mb-8'
+							style={{ color: 'hsl(var(--text-3))' }}>
 							Our approach combines strong technical expertise with real-world
-							business understanding, ensuring every product we build delivers
+							business understanding — ensuring every product we build delivers
 							measurable value.
 						</p>
 
-						<a href='#contact'>
-							<Button size='lg'>Work With Us</Button>
-						</a>
+						<Link
+							href='#contact'
+							className='btn-sharp'>
+							Work With Us →
+						</Link>
 					</motion.div>
 
-					{/* RIGHT CARDS */}
-					<div className='grid gap-5'>
-						{ABOUT_ITEMS.map((item, i) => {
-							const Icon = item.icon;
-
-							return (
-								<motion.div
-									key={i}
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: i * 0.1 }}
-									viewport={{ once: true }}
-									className='group flex items-start gap-4 p-5 rounded-xl border bg-white/50 backdrop-blur hover:shadow-md transition-all'>
-									<div className='h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition'>
-										<Icon className='h-6 w-6 text-primary' />
-									</div>
-
-									<div>
-										<h3 className='font-semibold mb-1'>{item.title}</h3>
-										<p className='text-sm text-muted-foreground leading-relaxed'>
-											{item.desc}
-										</p>
-									</div>
-								</motion.div>
-							);
-						})}
+					{/* Right — numbered list */}
+					<div>
+						{ABOUT_ITEMS.map((item, i) => (
+							<motion.div
+								key={i}
+								initial={{ opacity: 0, x: 16 }}
+								whileInView={{ opacity: 1, x: 0 }}
+								transition={{ duration: 0.45, delay: i * 0.08 }}
+								viewport={{ once: true }}
+								className='flex gap-5 items-start py-5'
+								style={{
+									borderBottom: '1px solid hsl(var(--border))',
+									borderTop: i === 0 ? '1px solid hsl(var(--border))' : 'none',
+								}}>
+								<span
+									className='font-heading font-bold text-xs tracking-widest pt-0.5 flex-none'
+									style={{ color: 'hsl(var(--border))' }}>
+									{item.num}
+								</span>
+								<div>
+									<h3
+										className='font-heading font-bold text-sm mb-1 tracking-tight'
+										style={{ color: 'hsl(var(--foreground))' }}>
+										{item.title}
+									</h3>
+									<p
+										className='text-sm leading-relaxed font-light'
+										style={{ color: 'hsl(var(--text-3))' }}>
+										{item.desc}
+									</p>
+								</div>
+							</motion.div>
+						))}
 					</div>
 				</div>
 			</div>

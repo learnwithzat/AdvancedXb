@@ -1,106 +1,177 @@
 /** @format */
-
+'use client';
 // components/footer.tsx
 import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { FaFacebook, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
+
+const NAV_LINKS = ['Home', 'Services', 'About', 'Contact'];
+const SERVICE_LINKS = [
+	'Web Development',
+	'POS & ERP',
+	'Mobile Apps',
+	'Cloud Solutions',
+];
+const LEGAL_LINKS = ['Privacy Policy', 'Terms of Service', 'Cookie Policy'];
+
+const SOCIALS = [
+	{ label: 'f', href: '#' },
+	{ label: 't', href: '#' },
+	{ label: 'in', href: '#' },
+	{ label: 'yt', href: '#' },
+];
+
+const linkStyle: React.CSSProperties = {
+	fontSize: '0.825rem',
+	fontWeight: 300,
+	color: 'hsl(var(--text-3))',
+	textDecoration: 'none',
+	transition: 'color 0.2s',
+};
+
 export function Footer() {
 	return (
-		<footer className='bg-muted/50 border-t'>
-			<div className='container py-12'>
-				<div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
-					<div>
-						<h3 className='text-2xl font-bold mb-4'>
-							ZatGo<span className='text-primary'>Innovation</span>
-						</h3>
-						<p className='text-sm text-muted-foreground'>
-							Building smart software solutions for modern businesses.
-						</p>
-					</div>
-
-					<div>
-						<h4 className='font-semibold mb-4'>Quick Links</h4>
-						<ul className='space-y-2 text-sm text-muted-foreground'>
-							<li>
-								<Link
-									href='#home'
-									className='hover:text-primary'>
-									Home
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='#services'
-									className='hover:text-primary'>
-									Services
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='#about'
-									className='hover:text-primary'>
-									About
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='#contact'
-									className='hover:text-primary'>
-									Contact
-								</Link>
-							</li>
-						</ul>
-					</div>
-
-					<div>
-						<h4 className='font-semibold mb-4'>Contact Info</h4>
-						<ul className='space-y-2 text-sm text-muted-foreground'>
-							<li className='flex items-center gap-2'>
-								<Mail className='h-4 w-4' />
-								<span>hello@zatgo.com</span>
-							</li>
-							<li className='flex items-center gap-2'>
-								<Phone className='h-4 w-4' />
-								<span>+1 (555) 123-4567</span>
-							</li>
-							<li className='flex items-center gap-2'>
-								<MapPin className='h-4 w-4' />
-								<span>San Francisco, CA</span>
-							</li>
-						</ul>
-					</div>
-
-					<div>
-						<h4 className='font-semibold mb-4'>Follow Us</h4>
-						<div className='flex gap-4'>
-							<Link
-								href='#'
-								className='text-muted-foreground hover:text-primary'>
-								<FaFacebook className='h-5 w-5' />
-							</Link>
-							<Link
-								href='#'
-								className='text-muted-foreground hover:text-primary'>
-								<FaTwitter className='h-5 w-5' />
-							</Link>
-							<Link
-								href='#'
-								className='text-muted-foreground hover:text-primary'>
-								<FaLinkedin className='h-5 w-5' />
-							</Link>
-							<Link
-								href='#'
-								className='text-muted-foreground hover:text-primary'>
-								<FaYoutube className='h-5 w-5' />
-							</Link>
+		<footer
+			style={{
+				background: 'hsl(var(--secondary))',
+				borderTop: '1px solid hsl(var(--border))',
+			}}>
+			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-14 pb-8'>
+				<div className='grid grid-cols-2 md:grid-cols-4 gap-10 mb-12'>
+					{/* Brand */}
+					<div className='col-span-2 md:col-span-1'>
+						<div
+							className='font-heading font-extrabold text-lg tracking-tight mb-2'
+							style={{ color: 'hsl(var(--foreground))' }}>
+							Zat<span style={{ color: 'hsl(var(--chrome))' }}>Go</span>{' '}
+							Innovation
 						</div>
+						<p
+							className='text-xs leading-relaxed font-light'
+							style={{ color: 'hsl(var(--text-3))' }}>
+							Building smart software solutions for modern businesses worldwide.
+						</p>
+
+						<div className='mt-5 space-y-2'>
+							{[
+								{ icon: Mail, val: 'hello@zatgo.com' },
+								{ icon: Phone, val: '+1 (555) 123-4567' },
+								{ icon: MapPin, val: 'San Francisco, CA' },
+							].map(({ icon: Icon, val }) => (
+								<div
+									key={val}
+									className='flex items-center gap-2'
+									style={{ color: 'hsl(var(--text-3))' }}>
+									<Icon size={11} />
+									<span className='text-xs font-light'>{val}</span>
+								</div>
+							))}
+						</div>
+					</div>
+
+					{/* Nav */}
+					<div>
+						<div
+							className='text-xs font-semibold uppercase tracking-widest mb-4'
+							style={{ color: 'hsl(var(--silver))' }}>
+							Navigation
+						</div>
+						<ul className='space-y-2.5'>
+							{NAV_LINKS.map((name) => (
+								<li key={name}>
+									<Link
+										href={`#${name.toLowerCase()}`}
+										style={linkStyle}
+										className='hover:text-foreground transition-colors'>
+										{name}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
+
+					{/* Services */}
+					<div>
+						<div
+							className='text-xs font-semibold uppercase tracking-widest mb-4'
+							style={{ color: 'hsl(var(--silver))' }}>
+							Services
+						</div>
+						<ul className='space-y-2.5'>
+							{SERVICE_LINKS.map((name) => (
+								<li key={name}>
+									<Link
+										href='#services'
+										style={linkStyle}
+										className='hover:text-foreground transition-colors'>
+										{name}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
+
+					{/* Legal */}
+					<div>
+						<div
+							className='text-xs font-semibold uppercase tracking-widest mb-4'
+							style={{ color: 'hsl(var(--silver))' }}>
+							Legal
+						</div>
+						<ul className='space-y-2.5'>
+							{LEGAL_LINKS.map((name) => (
+								<li key={name}>
+									<Link
+										href='#'
+										style={linkStyle}
+										className='hover:text-foreground transition-colors'>
+										{name}
+									</Link>
+								</li>
+							))}
+						</ul>
 					</div>
 				</div>
 
-				<div className='border-t mt-8 pt-8 text-center text-sm text-muted-foreground'>
-					<p>
+				{/* Bottom bar */}
+				<div
+					className='flex flex-col sm:flex-row items-center justify-between gap-4 pt-6'
+					style={{ borderTop: '1px solid hsl(var(--border))' }}>
+					<p
+						className='text-xs font-light'
+						style={{ color: 'hsl(var(--text-3))' }}>
 						© {new Date().getFullYear()} ZatGo Innovation. All rights reserved.
 					</p>
+
+					<div className='flex gap-2'>
+						{SOCIALS.map(({ label, href }) => (
+							<Link
+								key={label}
+								href={href}
+								className='w-8 h-8 flex items-center justify-center text-xs font-bold border transition-all'
+								style={{
+									borderColor: 'hsl(var(--border))',
+									color: 'hsl(var(--text-3))',
+								}}
+								onMouseEnter={(e) => {
+									(e.currentTarget as HTMLElement).style.background =
+										'hsl(var(--foreground))';
+									(e.currentTarget as HTMLElement).style.color =
+										'hsl(var(--background))';
+									(e.currentTarget as HTMLElement).style.borderColor =
+										'hsl(var(--foreground))';
+								}}
+								onMouseLeave={(e) => {
+									(e.currentTarget as HTMLElement).style.background =
+										'transparent';
+									(e.currentTarget as HTMLElement).style.color =
+										'hsl(var(--text-3))';
+									(e.currentTarget as HTMLElement).style.borderColor =
+										'hsl(var(--border))';
+								}}>
+								{label}
+							</Link>
+						))}
+					</div>
 				</div>
 			</div>
 		</footer>
