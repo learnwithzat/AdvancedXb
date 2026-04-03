@@ -2,16 +2,8 @@
 
 // components/footer.tsx
 import Link from 'next/link';
-import {
-	Facebook,
-	Twitter,
-	Linkedin,
-	Github,
-	Mail,
-	Phone,
-	MapPin,
-} from 'lucide-react';
-
+import { Mail, Phone, MapPin } from 'lucide-react';
+import { FaFacebook, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
 export function Footer() {
 	return (
 		<footer className='bg-muted/50 border-t'>
@@ -84,22 +76,22 @@ export function Footer() {
 							<Link
 								href='#'
 								className='text-muted-foreground hover:text-primary'>
-								<Facebook className='h-5 w-5' />
+								<FaFacebook className='h-5 w-5' />
 							</Link>
 							<Link
 								href='#'
 								className='text-muted-foreground hover:text-primary'>
-								<Twitter className='h-5 w-5' />
+								<FaTwitter className='h-5 w-5' />
 							</Link>
 							<Link
 								href='#'
 								className='text-muted-foreground hover:text-primary'>
-								<Linkedin className='h-5 w-5' />
+								<FaLinkedin className='h-5 w-5' />
 							</Link>
 							<Link
 								href='#'
 								className='text-muted-foreground hover:text-primary'>
-								<Github className='h-5 w-5' />
+								<FaYoutube className='h-5 w-5' />
 							</Link>
 						</div>
 					</div>

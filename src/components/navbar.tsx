@@ -58,9 +58,10 @@ export function Navbar() {
 						</Link>
 					))}
 					<ThemeToggle />
-					<Button asChild>
-						<Link href='#contact'>Get Quote</Link>
-					</Button>
+
+					<Link href='#contact'>
+						<Button>Get Quote</Button>
+					</Link>
 				</nav>
 
 				{/* Mobile Navigation */}
@@ -89,15 +90,12 @@ export function Navbar() {
 									{item.name}
 								</Link>
 							))}
-							<Button
-								asChild
-								className='mt-2'>
-								<Link
-									href='#contact'
-									onClick={() => setIsMobileMenuOpen(false)}>
-									Get Quote
-								</Link>
-							</Button>
+
+							<Link
+								href='#contact'
+								onClick={() => setIsMobileMenuOpen(false)}>
+								<Button className='mt-2'>Get Quote</Button>
+							</Link>
 						</nav>
 					</div>
 				)}
