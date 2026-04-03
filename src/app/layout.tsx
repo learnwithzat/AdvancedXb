@@ -18,41 +18,42 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={`${inter.className} bg-gray-50 text-gray-900`}>
+			<body
+				className={`${inter.className} bg-gray-50 text-gray-900 antialiased`}>
 				<div className='min-h-screen flex flex-col'>
 					{/* Navbar */}
-					<header className='sticky top-0 z-50 bg-white border-b'>
-						<div className='max-w-7xl mx-auto px-6 py-4 flex justify-between items-center'>
-							<h1 className='text-xl font-bold text-blue-600'>
+					<header className='sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b shadow-sm'>
+						<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center'>
+							<h1 className='text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent'>
 								ZatGo Innovation
 							</h1>
 
-							<nav className='hidden md:flex gap-6 text-sm font-medium'>
+							<nav className='hidden md:flex gap-8 text-sm font-medium'>
 								<a
 									href='#'
-									className='hover:text-blue-600'>
+									className='transition-colors hover:text-blue-600 focus:text-blue-600 focus:outline-none'>
 									Home
 								</a>
 								<a
 									href='#services'
-									className='hover:text-blue-600'>
+									className='transition-colors hover:text-blue-600 focus:text-blue-600 focus:outline-none'>
 									Services
 								</a>
 								<a
 									href='#about'
-									className='hover:text-blue-600'>
+									className='transition-colors hover:text-blue-600 focus:text-blue-600 focus:outline-none'>
 									About
 								</a>
 								<a
 									href='#contact'
-									className='hover:text-blue-600'>
+									className='transition-colors hover:text-blue-600 focus:text-blue-600 focus:outline-none'>
 									Contact
 								</a>
 							</nav>
 
 							<a
 								href='#contact'
-								className='bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700'>
+								className='bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all hover:bg-blue-700 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none'>
 								Get Quote
 							</a>
 						</div>
@@ -62,10 +63,26 @@ export default function RootLayout({
 					<main className='flex-1'>{children}</main>
 
 					{/* Footer */}
-					<footer className='bg-white border-t mt-10'>
-						<div className='max-w-7xl mx-auto px-6 py-6 text-sm text-gray-500 flex justify-between'>
-							<p>© {new Date().getFullYear()} ZatGo Innovation</p>
-							<p>All rights reserved</p>
+					<footer className='bg-white border-t mt-auto'>
+						<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12'>
+							<div className='flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500'>
+								<p>
+									© {new Date().getFullYear()} ZatGo Innovation. All rights
+									reserved.
+								</p>
+								<div className='flex gap-6'>
+									<a
+										href='#'
+										className='hover:text-blue-600 transition-colors'>
+										Privacy Policy
+									</a>
+									<a
+										href='#'
+										className='hover:text-blue-600 transition-colors'>
+										Terms of Service
+									</a>
+								</div>
+							</div>
 						</div>
 					</footer>
 				</div>
