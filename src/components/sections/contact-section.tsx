@@ -70,11 +70,14 @@ export function ContactSection() {
 		setIsSubmitting(true);
 		try {
 			// Updated to port 5000 to match the NestJS backend main.ts
-			const response = await fetch('http://localhost:5000/contact', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ ...formData, provider: submitSource }),
-			});
+			const response = await fetch(
+				'https://advancedx.onrender.com:5000/contact',
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ ...formData, provider: submitSource }),
+				},
+			);
 
 			if (!response.ok) throw new Error('Failed to send');
 
