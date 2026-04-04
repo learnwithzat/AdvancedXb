@@ -71,7 +71,7 @@ export function ContactSection() {
 		try {
 			// Updated to port 5000 to match the NestJS backend main.ts
 			const response = await fetch(
-				'https://advancedx.onrender.com:5000/contact',
+				'https://advancedx-1.onrender.com:5000/contact',
 				{
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
