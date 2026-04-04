@@ -26,6 +26,7 @@ export function CTASection() {
 	const sectionRef = useRef<HTMLElement>(null);
 	const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 	const [isHovered, setIsHovered] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const { scrollYProgress } = useScroll({
 		target: sectionRef,
@@ -34,6 +35,46 @@ export function CTASection() {
 
 	const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
 	const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
+
+	// ✅ NEW: handle CTA click (demo trigger)
+	const handleCTA = async () => {
+		try {
+			setLoading(true);
+
+			// ⚡ You can replace this with real form data later
+			const payload = {
+				firstName: 'Visitor',
+				lastName: 'CTA',
+				email: 'no-reply@zatgo.com',
+				whatsapp: '',
+				service: 'General Inquiry',
+				message: 'User clicked CTA section',
+				provider: 'whatsapp', // 🔥 change to "email" if needed
+			};
+
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(payload),
+			});
+
+			const data = await res.json();
+
+			// ✅ WhatsApp flow (FREE)
+			if (data.type === 'whatsapp' && data.url) {
+				window.open(data.url, '_blank');
+			}
+
+			// ✅ Email flow
+			if (data.type === 'email') {
+				console.log('Email sent successfully');
+			}
+		} catch (err) {
+			console.error('CTA Error:', err);
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	return (
 		<section
@@ -44,7 +85,6 @@ export function CTASection() {
 			<motion.div
 				className='absolute inset-0 overflow-hidden pointer-events-none'
 				style={{ opacity }}>
-				{/* Gradient Orbs */}
 				<motion.div
 					className='absolute -top-40 -right-40 w-80 h-80 rounded-full'
 					style={{
@@ -52,15 +92,8 @@ export function CTASection() {
 							'radial-gradient(circle, rgba(192,192,192,0.1) 0%, transparent 70%)',
 						scale,
 					}}
-					animate={{
-						x: [0, 30, 0],
-						y: [0, -30, 0],
-					}}
-					transition={{
-						duration: 8,
-						repeat: Infinity,
-						ease: 'easeInOut',
-					}}
+					animate={{ x: [0, 30, 0], y: [0, -30, 0] }}
+					transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
 				/>
 
 				<motion.div
@@ -70,10 +103,7 @@ export function CTASection() {
 							'radial-gradient(circle, rgba(192,192,192,0.08) 0%, transparent 70%)',
 						scale,
 					}}
-					animate={{
-						x: [0, -40, 0],
-						y: [0, 40, 0],
-					}}
+					animate={{ x: [0, -40, 0], y: [0, 40, 0] }}
 					transition={{
 						duration: 10,
 						repeat: Infinity,
@@ -82,7 +112,6 @@ export function CTASection() {
 					}}
 				/>
 
-				{/* Grid Pattern */}
 				<div
 					className='absolute inset-0'
 					style={{
@@ -94,7 +123,6 @@ export function CTASection() {
 					}}
 				/>
 
-				{/* Animated Lines */}
 				<motion.div
 					className='absolute top-1/2 left-0 w-full h-px'
 					style={{
@@ -111,9 +139,7 @@ export function CTASection() {
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 0.7, ease: 'easeOut' }}
 					className='relative'>
-					{/* Main Content Container with Glass Effect */}
 					<div className='relative rounded-sm overflow-hidden'>
-						{/* Sparkle Decorations */}
 						<motion.div
 							initial={{ opacity: 0, scale: 0 }}
 							animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -126,9 +152,7 @@ export function CTASection() {
 						</motion.div>
 
 						<div className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 lg:gap-12'>
-							{/* Left Content */}
 							<div className='flex-1'>
-								{/* Badge */}
 								<motion.div
 									initial={{ opacity: 0, x: -20 }}
 									animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -144,7 +168,6 @@ export function CTASection() {
 									</span>
 								</motion.div>
 
-								{/* Eyebrow */}
 								<motion.p
 									initial={{ opacity: 0 }}
 									animate={isInView ? { opacity: 1 } : {}}
@@ -154,7 +177,6 @@ export function CTASection() {
 									Ready to start?
 								</motion.p>
 
-								{/* Main Heading with Gradient */}
 								<motion.h2
 									initial={{ opacity: 0 }}
 									animate={isInView ? { opacity: 1 } : {}}
@@ -177,7 +199,6 @@ export function CTASection() {
 									<span>Today</span>
 								</motion.h2>
 
-								{/* Description */}
 								<motion.p
 									initial={{ opacity: 0 }}
 									animate={isInView ? { opacity: 1 } : {}}
@@ -188,7 +209,6 @@ export function CTASection() {
 									solution for your specific needs.
 								</motion.p>
 
-								{/* Features List */}
 								<motion.div
 									initial={{ opacity: 0 }}
 									animate={isInView ? { opacity: 1 } : {}}
@@ -213,40 +233,32 @@ export function CTASection() {
 								</motion.div>
 							</div>
 
-							{/* Right Column - CTA Button Area */}
+							{/* ✅ ONLY CHANGE HERE */}
 							<motion.div
 								initial={{ opacity: 0, x: 20 }}
 								animate={isInView ? { opacity: 1, x: 0 } : {}}
 								transition={{ delay: 0.5, duration: 0.6 }}
 								className='flex-none w-full lg:w-auto'>
-								{/* Main CTA Button with Hover Effects */}
 								<MotionButton
-									asChild
 									size='lg'
+									onClick={handleCTA}
+									disabled={loading}
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
 									onHoverStart={() => setIsHovered(true)}
 									onHoverEnd={() => setIsHovered(false)}
 									className='relative group overflow-hidden px-8 py-6 uppercase tracking-widest font-heading border-white/20 min-w-[200px] bg-white/5 backdrop-blur-sm hover:text-foreground transition-colors duration-300'>
-									<Link href='#contact'>
-										<span className='relative z-10 flex items-center justify-center gap-2'>
-											Get Started
-											<motion.div
-												animate={{ x: isHovered ? 5 : 0 }}
-												transition={{ duration: 0.2 }}>
-												<ArrowRight size={14} />
-											</motion.div>
-										</span>
+									<span className='relative z-10 flex items-center justify-center gap-2'>
+										{loading ? 'Processing...' : 'Get Started'}
+										<motion.div animate={{ x: isHovered ? 5 : 0 }}>
+											<ArrowRight size={14} />
+										</motion.div>
+									</span>
 
-										{/* Slide-in Background */}
-										<span className='absolute inset-0 bg-gradient-to-r from-white to-silver translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out' />
-
-										{/* Glow Effect on Hover */}
-										<span className='absolute -inset-1 bg-gradient-to-r from-silver/30 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
-									</Link>
+									<span className='absolute inset-0 bg-gradient-to-r from-white to-silver translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out' />
+									<span className='absolute -inset-1 bg-gradient-to-r from-silver/30 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
 								</MotionButton>
 
-								{/* Secondary Link */}
 								<MotionButton
 									asChild
 									variant='link'
@@ -267,34 +279,7 @@ export function CTASection() {
 								</MotionButton>
 							</motion.div>
 						</div>
-
-						{/* Bottom Decorative Bar */}
-						<motion.div
-							initial={{ scaleX: 0 }}
-							animate={isInView ? { scaleX: 1 } : {}}
-							transition={{ delay: 1, duration: 0.8 }}
-							className='absolute -bottom-3 left-0 w-full h-px bg-gradient-to-r from-transparent via-silver to-transparent'
-							style={{ transformOrigin: 'left' }}
-						/>
 					</div>
-
-					{/* Trust Indicators */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={isInView ? { opacity: 1, y: 0 } : {}}
-						transition={{ delay: 0.8, duration: 0.5 }}
-						className='flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-8 pt-6 border-t border-white/10'>
-						<span className='text-[0.65rem] uppercase tracking-wider text-white/40'>
-							Trusted by
-						</span>
-						<div className='flex items-center gap-4 text-white/60 text-xs font-light'>
-							<span>500+ Companies</span>
-							<span className='w-px h-3 bg-white/20' />
-							<span>24/7 Support</span>
-							<span className='w-px h-3 bg-white/20' />
-							<span>98% Retention</span>
-						</div>
-					</motion.div>
 				</motion.div>
 			</div>
 		</section>

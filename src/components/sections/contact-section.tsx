@@ -5,15 +5,10 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence, Variants } from 'framer-motion';
-import {
-	Mail,
-	Phone,
-	MapPin,
-	Send,
-	CheckCircle,
-	ArrowRight,
-} from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle, ArrowRight } from 'lucide-react';
+import { FaMailBulk, FaWhatsapp } from 'react-icons/fa';
 import { MotionButton } from '@/components/ui/motion-button';
+import { toast } from 'sonner';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -21,32 +16,37 @@ const CONTACT_INFO = [
 	{
 		icon: Mail,
 		label: 'Email',
-		value: 'hello@zatgo.com',
-		href: 'mailto:hello@zatgo.com',
+		value: 'team.zatgoinnovation@gmail.com',
+		href: 'team.zatgoinnovation@gmail.com',
 	},
 	{
-		icon: Phone,
-		label: 'Phone',
-		value: '+1 (555) 123-4567',
-		href: 'tel:+15551234567',
+		icon: FaWhatsapp,
+		label: 'WhatsApp',
+		value: '+966 55 124 5307',
+		href: 'tel:+966551245307',
 	},
 	{ icon: MapPin, label: 'Location', value: 'San Francisco, CA', href: '#' },
 ];
 
 const SERVICES_LIST = [
 	'Web Development',
-	'POS / ERP System',
-	'Mobile App',
+	'POS Application',
+	'Mobile App Development',
 	'Cloud Solutions',
 	'SaaS Product',
 ];
 
 export function ContactSection() {
 	const [sent, setSent] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitSource, setSubmitSource] = useState<'email' | 'whatsapp' | null>(
+		null,
+	);
 	const [formData, setFormData] = useState({
 		firstName: '',
 		lastName: '',
 		email: '',
+		whatsapp: '',
 		service: '',
 		message: '',
 	});
@@ -63,10 +63,42 @@ export function ContactSection() {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		setSent(true);
-		setTimeout(() => setSent(false), 3000);
+		if (!submitSource) return;
+
+		setIsSubmitting(true);
+		try {
+			// Updated to port 5000 to match the NestJS backend main.ts
+			const response = await fetch('http://localhost:5000/contact', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ ...formData, provider: submitSource }),
+			});
+
+			if (!response.ok) throw new Error('Failed to send');
+
+			setSent(true);
+			toast.success(
+				submitSource === 'whatsapp' ?
+					'WhatsApp notification sent!'
+				:	'Email sent successfully!',
+			);
+			setFormData({
+				firstName: '',
+				lastName: '',
+				email: '',
+				whatsapp: '',
+				service: '',
+				message: '',
+			});
+			setTimeout(() => setSent(false), 3000);
+		} catch (error) {
+			toast.error('Something went wrong. Please try again.');
+		} finally {
+			setIsSubmitting(false);
+			setSubmitSource(null);
+		}
 	};
 
 	const labelStyle: React.CSSProperties = {
@@ -316,47 +348,107 @@ export function ContactSection() {
 								</div>
 
 								<AnimatePresence mode='wait'>
-									<MotionButton
-										key={sent ? 'sent' : 'send'}
-										type='submit'
-										asChild={false}
-										size='lg'
-										whileHover={!sent ? { scale: 1.02 } : {}}
-										whileTap={!sent ? { scale: 0.98 } : {}}
-										className='relative w-full py-6 uppercase tracking-[0.15em] font-heading'
-										style={{
-											background:
-												sent ? 'hsl(var(--silver))' : 'hsl(var(--foreground))',
-											color: 'hsl(var(--background))',
-											border: 'none',
-											cursor: sent ? 'default' : 'pointer',
-										}}
-										disabled={sent}>
-										<span className='relative z-10 flex items-center justify-center gap-2'>
-											{sent ?
-												<>
-													<CheckCircle size={14} />
-													Message Sent
-												</>
-											:	<>
-													Send Message
-													<Send
-														size={12}
-														className='group-hover:translate-x-1 transition-transform'
-													/>
-												</>
-											}
-										</span>
-										{!sent && (
-											<motion.div
-												className='absolute inset-0 bg-gradient-to-r from-silver to-silver-dark'
-												initial={{ x: '-100%' }}
-												whileHover={{ x: 0 }}
-												transition={{ duration: 0.3 }}
-												style={{ opacity: 0.15 }}
-											/>
-										)}
-									</MotionButton>
+									<div className='w-full flex items-center justify-center'>
+										<MotionButton
+											// Made key unique to the email provider
+											key={sent ? 'sent-email' : 'send-email'}
+											type='submit'
+											asChild={false}
+											size='lg'
+											loading={isSubmitting && submitSource === 'email'}
+											onClick={() => setSubmitSource('email')}
+											whileHover={!sent ? { scale: 1.02 } : {}}
+											whileTap={!sent ? { scale: 0.98 } : {}}
+											className='relative w-full py-6 uppercase tracking-[0.15em] font-heading'
+											style={{
+												background:
+													sent ? 'hsl(var(--silver))' : (
+														'hsl(var(--foreground))'
+													),
+												color: 'hsl(var(--background))',
+												border: 'none',
+												cursor: sent ? 'default' : 'pointer',
+											}}
+											disabled={sent}>
+											<div>
+												<span className='relative z-10 flex items-center justify-center gap-2'>
+													{sent ?
+														<>
+															<CheckCircle size={14} />
+															Message Sent
+														</>
+													:	<>
+															Send to Mail
+															<FaMailBulk
+																size={12}
+																className='group-hover:translate-x-1 transition-transform'
+															/>
+														</>
+													}
+												</span>
+											</div>
+
+											{!sent && (
+												<motion.div
+													className='absolute inset-0 bg-gradient-to-r from-silver to-silver-dark'
+													initial={{ x: '-100%' }}
+													whileHover={{ x: 0 }}
+													transition={{ duration: 0.3 }}
+													style={{ opacity: 0.15 }}
+												/>
+											)}
+										</MotionButton>
+
+										<MotionButton
+											// Made key unique to the whatsapp provider
+											key={sent ? 'sent-whatsapp' : 'send-whatsapp'}
+											type='submit'
+											asChild={false}
+											size='lg'
+											loading={isSubmitting && submitSource === 'whatsapp'}
+											onClick={() => setSubmitSource('whatsapp')}
+											whileHover={!sent ? { scale: 1.02 } : {}}
+											whileTap={!sent ? { scale: 0.98 } : {}}
+											className='relative w-full py-6 uppercase tracking-[0.15em] font-heading'
+											style={{
+												background:
+													sent ? 'hsl(var(--silver))' : (
+														'hsl(var(--foreground))'
+													),
+												color: 'hsl(var(--background))',
+												border: 'none',
+												cursor: sent ? 'default' : 'pointer',
+											}}
+											disabled={sent}>
+											<div>
+												<span className='relative z-10 flex items-center justify-center gap-2'>
+													{sent ?
+														<>
+															<CheckCircle size={14} />
+															Message Sent
+														</>
+													:	<>
+															Send to WhatsApp
+															<FaWhatsapp
+																size={12}
+																className='group-hover:translate-x-1 transition-transform'
+															/>
+														</>
+													}
+												</span>
+											</div>
+
+											{!sent && (
+												<motion.div
+													className='absolute inset-0 bg-gradient-to-r from-silver to-silver-dark'
+													initial={{ x: '-100%' }}
+													whileHover={{ x: 0 }}
+													transition={{ duration: 0.3 }}
+													style={{ opacity: 0.15 }}
+												/>
+											)}
+										</MotionButton>
+									</div>
 								</AnimatePresence>
 
 								{/* Form hint */}
