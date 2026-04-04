@@ -5,8 +5,10 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { MotionButton } from '@/components/ui/motion-button';
 
 const navItems = [
 	{ name: 'Home', href: '#home' },
@@ -69,47 +71,61 @@ export function Navbar() {
 
 				{/* CTA */}
 				<div className='hidden md:flex items-center gap-3'>
-					<Link
-						href='#contact'
-						className='btn-sharp text-xs px-5 py-2.5'>
-						Get Quote
-					</Link>
+					<MotionButton
+						asChild
+						variant='default'
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						className='text-xs px-6 py-2.5 font-heading uppercase tracking-widest'>
+						<Link href='#contact'>Get Quote</Link>
+					</MotionButton>
 				</div>
 
 				{/* Mobile toggle */}
-				<button
-					className='md:hidden p-2 text-foreground'
+				<MotionButton
+					variant='ghost'
+					className='md:hidden p-2'
 					onClick={() => setIsMobileOpen(!isMobileOpen)}
 					aria-label='Toggle menu'>
 					{isMobileOpen ?
 						<X size={20} />
 					:	<Menu size={20} />}
-				</button>
+				</MotionButton>
 			</div>
 
 			{/* Mobile menu */}
-			{isMobileOpen && (
-				<div className='md:hidden bg-background border-b border-border animate-fade-up'>
-					<nav className='max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1'>
-						{navItems.map((item) => (
-							<Link
-								key={item.name}
-								href={item.href}
-								className='py-3 text-sm border-b border-border last:border-0'
-								style={{ color: 'hsl(var(--text-3))' }}
+			<AnimatePresence>
+				{isMobileOpen && (
+					<motion.div
+						initial={{ height: 0, opacity: 0 }}
+						animate={{ height: 'auto', opacity: 1 }}
+						exit={{ height: 0, opacity: 0 }}
+						transition={{ duration: 0.3, ease: 'easeInOut' }}
+						className='md:hidden bg-background border-b border-border overflow-hidden'>
+						<nav className='max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1'>
+							{navItems.map((item) => (
+								<Link
+									key={item.name}
+									href={item.href}
+									className='py-3 text-sm border-b border-border last:border-0'
+									style={{ color: 'hsl(var(--text-3))' }}
+									onClick={() => setIsMobileOpen(false)}>
+									{item.name}
+								</Link>
+							))}
+							<MotionButton
+								asChild
+								variant='default'
+								whileHover={{ scale: 1.02 }}
+								whileTap={{ scale: 0.98 }}
+								className='mt-3 w-full font-heading uppercase tracking-widest py-6'
 								onClick={() => setIsMobileOpen(false)}>
-								{item.name}
-							</Link>
-						))}
-						<Link
-							href='#contact'
-							className='btn-sharp mt-3 justify-center'
-							onClick={() => setIsMobileOpen(false)}>
-							Get Quote
-						</Link>
-					</nav>
-				</div>
-			)}
+								<Link href='#contact'>Get Quote</Link>
+							</MotionButton>
+						</nav>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</header>
 	);
 }

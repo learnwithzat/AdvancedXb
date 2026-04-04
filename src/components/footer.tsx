@@ -3,6 +3,7 @@
 // components/footer.tsx
 import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { MotionButton } from '@/components/ui/motion-button';
 
 const NAV_LINKS = ['Home', 'Services', 'About', 'Contact'];
 const SERVICE_LINKS = [
@@ -144,32 +145,16 @@ export function Footer() {
 
 					<div className='flex gap-2'>
 						{SOCIALS.map(({ label, href }) => (
-							<Link
+							<MotionButton
 								key={label}
-								href={href}
-								className='w-8 h-8 flex items-center justify-center text-xs font-bold border transition-all'
-								style={{
-									borderColor: 'hsl(var(--border))',
-									color: 'hsl(var(--text-3))',
-								}}
-								onMouseEnter={(e) => {
-									(e.currentTarget as HTMLElement).style.background =
-										'hsl(var(--foreground))';
-									(e.currentTarget as HTMLElement).style.color =
-										'hsl(var(--background))';
-									(e.currentTarget as HTMLElement).style.borderColor =
-										'hsl(var(--foreground))';
-								}}
-								onMouseLeave={(e) => {
-									(e.currentTarget as HTMLElement).style.background =
-										'transparent';
-									(e.currentTarget as HTMLElement).style.color =
-										'hsl(var(--text-3))';
-									(e.currentTarget as HTMLElement).style.borderColor =
-										'hsl(var(--border))';
-								}}>
-								{label}
-							</Link>
+								asChild
+								variant='outline'
+								size='icon'
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.9 }}
+								className='w-8 h-8 rounded-none border bg-transparent text-muted-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-colors'>
+								<Link href={href}>{label}</Link>
+							</MotionButton>
 						))}
 					</div>
 				</div>

@@ -3,8 +3,28 @@
 // components/sections/services-section.tsx
 'use client';
 
-import { motion } from 'framer-motion';
-import { Code2, Database, Smartphone, Cloud, Shield, Zap } from 'lucide-react';
+import { useRef, useState } from 'react';
+import {
+	motion,
+	useInView,
+	useScroll,
+	useTransform,
+	Variants,
+} from 'framer-motion';
+import Link from 'next/link';
+import { MotionButton } from '@/components/ui/motion-button';
+import {
+	Code2,
+	Database,
+	Smartphone,
+	Cloud,
+	Shield,
+	Zap,
+	ArrowRight,
+	Sparkles,
+	CheckCircle,
+	TrendingUp,
+} from 'lucide-react';
 
 const SERVICES = [
 	{
@@ -14,6 +34,8 @@ const SERVICES = [
 		description:
 			'Modern, scalable web apps built with Next.js, React, and cutting-edge technologies for peak performance.',
 		tags: ['Responsive', 'SEO', 'Performance'],
+		color: '#4ecdc4',
+		gradient: 'from-cyan-500/20 to-blue-500/20',
 	},
 	{
 		num: '02',
@@ -22,6 +44,8 @@ const SERVICES = [
 		description:
 			'Custom business software with real-time analytics, inventory control, and complete operational oversight.',
 		tags: ['Inventory', 'Analytics', 'Reporting'],
+		color: '#ff6b6b',
+		gradient: 'from-red-500/20 to-orange-500/20',
 	},
 	{
 		num: '03',
@@ -30,6 +54,8 @@ const SERVICES = [
 		description:
 			'Cross-platform mobile applications with native performance, offline-first architecture, and push notifications.',
 		tags: ['iOS', 'Android', 'PWA'],
+		color: '#45b7d1',
+		gradient: 'from-blue-500/20 to-indigo-500/20',
 	},
 	{
 		num: '04',
@@ -38,6 +64,8 @@ const SERVICES = [
 		description:
 			'Scalable cloud infrastructure, CI/CD pipelines, and deployment strategies for modern applications.',
 		tags: ['AWS', 'Azure', '99.9% Uptime'],
+		color: '#96ceb4',
+		gradient: 'from-green-500/20 to-emerald-500/20',
 	},
 	{
 		num: '05',
@@ -46,6 +74,8 @@ const SERVICES = [
 		description:
 			'Enterprise-grade security, data encryption, and compliance with GDPR and industry standards.',
 		tags: ['Encryption', 'GDPR', 'Audits'],
+		color: '#f4d03f',
+		gradient: 'from-yellow-500/20 to-amber-500/20',
 	},
 	{
 		num: '06',
@@ -54,109 +84,331 @@ const SERVICES = [
 		description:
 			'End-to-end SaaS development from concept to deployment with subscriptions and analytics built in.',
 		tags: ['Subscriptions', 'API', 'Dashboards'],
+		color: '#e74c3c',
+		gradient: 'from-purple-500/20 to-pink-500/20',
 	},
 ];
 
+const STATS = [
+	{ value: '150+', label: 'Projects Delivered', icon: Code2 },
+	{ value: '50+', label: 'Happy Clients', icon: CheckCircle },
+	{ value: '99.9%', label: 'Uptime Guarantee', icon: TrendingUp },
+];
+
 export function ServicesSection() {
+	const sectionRef = useRef<HTMLElement>(null);
+	const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+	const { scrollYProgress } = useScroll({
+		target: sectionRef,
+		offset: ['start end', 'end start'],
+	});
+
+	const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 50]);
+
+	const containerVariants: Variants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.1,
+				delayChildren: 0.3,
+			},
+		},
+	};
+
+	const cardVariants: Variants = {
+		hidden: { opacity: 0, y: 30 },
+		visible: (i: number) => ({
+			opacity: 1,
+			y: 0,
+			transition: { delay: i * 0.1, duration: 0.5, ease: 'easeOut' },
+		}),
+	};
+
 	return (
 		<section
+			ref={sectionRef}
 			id='services'
-			className='py-24'
+			className='py-24 relative overflow-hidden'
 			style={{ background: 'hsl(var(--secondary))' }}>
-			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12'>
-				{/* Header */}
-				<div className='flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10'>
-					<div>
-						<div className='section-eyebrow mb-3'>What we do</div>
+			{/* Animated Background */}
+			<motion.div
+				className='absolute inset-0 overflow-hidden pointer-events-none'
+				style={{ y: backgroundY }}>
+				{/* Gradient Orbs */}
+				<div className='absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-r from-silver/5 to-transparent blur-3xl' />
+				<div className='absolute bottom-20 left-20 w-80 h-80 rounded-full bg-gradient-to-l from-silver/5 to-transparent blur-3xl' />
+
+				{/* Diagonal Lines Pattern */}
+				<div
+					className='absolute inset-0 opacity-[0.02]'
+					style={{
+						backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 40px, hsl(var(--foreground)) 40px, hsl(var(--foreground)) 41px)`,
+					}}
+				/>
+			</motion.div>
+
+			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10'>
+				{/* Header with enhanced animations */}
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					animate={isInView ? { opacity: 1, y: 0 } : {}}
+					transition={{ duration: 0.6 }}
+					className='flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16'>
+					<div className='relative'>
+						{/* Badge */}
+						<motion.div
+							initial={{ opacity: 0, x: -20 }}
+							animate={isInView ? { opacity: 1, x: 0 } : {}}
+							transition={{ delay: 0.2 }}
+							className='inline-flex items-center gap-2 px-3 py-1 mb-4 border border-silver/20 bg-silver/5'>
+							<Sparkles
+								size={12}
+								style={{ color: 'hsl(var(--silver))' }}
+							/>
+							<span className='section-eyebrow text-xs tracking-[0.2em] uppercase'>
+								What we do
+							</span>
+						</motion.div>
+
 						<h2
-							className='font-heading font-extrabold tracking-tighter leading-none'
-							style={{ fontSize: 'clamp(1.75rem, 3.5vw, 3rem)' }}>
-							Our Services
+							className='font-heading font-bold tracking-tighter leading-[1.1]'
+							style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+							Our{' '}
+							<span className='relative inline-block'>
+								<span className='bg-gradient-to-r from-silver via-silver-dark to-chrome bg-clip-text text-transparent'>
+									Services
+								</span>
+								<motion.span
+									initial={{ width: 0 }}
+									animate={isInView ? { width: '100%' } : {}}
+									transition={{ delay: 0.6, duration: 0.8 }}
+									className='absolute bottom-0 left-0 h-px bg-gradient-to-r from-silver to-transparent'
+								/>
+							</span>
 						</h2>
 					</div>
-					<p
+
+					<motion.p
+						initial={{ opacity: 0, x: 20 }}
+						animate={isInView ? { opacity: 1, x: 0 } : {}}
+						transition={{ delay: 0.3, duration: 0.5 }}
 						className='text-sm leading-relaxed font-light max-w-xs'
 						style={{ color: 'hsl(var(--text-3))' }}>
 						Comprehensive software solutions tailored to your business needs
-					</p>
-				</div>
+					</motion.p>
+				</motion.div>
 
-				{/* Grid */}
-				<div
-					className='grid md:grid-cols-2 lg:grid-cols-3'
-					style={{
-						gap: '1px',
-						background: 'hsl(var(--border))',
-					}}>
+				{/* Services Grid with enhanced cards */}
+				<motion.div
+					variants={containerVariants}
+					initial='hidden'
+					animate={isInView ? 'visible' : 'hidden'}
+					className='grid md:grid-cols-2 lg:grid-cols-3 gap-px'
+					style={{ background: 'hsl(var(--border))' }}>
 					{SERVICES.map((svc, i) => {
 						const Icon = svc.icon;
+						const isHovered = hoveredIndex === i;
+
 						return (
 							<motion.div
 								key={i}
-								initial={{ opacity: 0, y: 16 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.4, delay: i * 0.07 }}
-								viewport={{ once: true }}
-								className='group border-accent-hover p-7 cursor-default'
-								style={{ background: 'hsl(var(--secondary))' }}
-								onMouseEnter={(e) =>
-									((e.currentTarget as HTMLElement).style.background =
-										'hsl(var(--card))')
-								}
-								onMouseLeave={(e) =>
-									((e.currentTarget as HTMLElement).style.background =
-										'hsl(var(--secondary))')
-								}>
-								{/* Number */}
-								<div
-									className='font-heading font-bold text-xs tracking-widest mb-4'
-									style={{ color: 'hsl(var(--border))' }}>
-									{svc.num}
-								</div>
-
-								{/* Icon */}
-								<div
-									className='w-9 h-9 flex items-center justify-center mb-4 border'
+								custom={i}
+								variants={cardVariants}
+								onHoverStart={() => setHoveredIndex(i)}
+								onHoverEnd={() => setHoveredIndex(null)}
+								className='group relative overflow-hidden'
+								style={{ background: 'hsl(var(--secondary))' }}>
+								{/* Animated Background Gradient */}
+								<motion.div
+									className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500'
 									style={{
-										borderColor: 'hsl(var(--border))',
-										color: 'hsl(var(--silver-dark))',
-									}}>
-									<Icon size={16} />
+										background: `linear-gradient(135deg, ${svc.color}10, transparent)`,
+									}}
+									initial={false}
+									animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
+								/>
+
+								{/* Card Content */}
+								<div className='relative p-8 cursor-pointer transition-all duration-500 group-hover:translate-y-[-4px]'>
+									{/* Number with animated line */}
+									<div className='flex justify-between items-start mb-6'>
+										<motion.div
+											className='font-heading font-bold text-sm tracking-widest'
+											style={{ color: 'hsl(var(--border))' }}>
+											{svc.num}
+										</motion.div>
+										<motion.div
+											initial={{ scale: 0 }}
+											animate={isHovered ? { scale: 1 } : { scale: 0 }}
+											transition={{ duration: 0.3 }}
+											className='w-8 h-px bg-gradient-to-r from-silver to-transparent'
+										/>
+									</div>
+
+									{/* Icon with animation */}
+									<motion.div
+										whileHover={{ rotate: 5, scale: 1.05 }}
+										transition={{ type: 'spring', stiffness: 300 }}
+										className='relative w-12 h-12 flex items-center justify-center mb-6 border-2 transition-all duration-300 group-hover:border-silver group-hover:scale-110'
+										style={{
+											borderColor: isHovered ? svc.color : 'hsl(var(--border))',
+											color: isHovered ? svc.color : 'hsl(var(--silver-dark))',
+											background: isHovered ? `${svc.color}10` : 'transparent',
+										}}>
+										<Icon
+											size={20}
+											strokeWidth={1.5}
+										/>
+
+										{/* Glow effect */}
+										<motion.div
+											className='absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500'
+											style={{ background: svc.color }}
+										/>
+									</motion.div>
+
+									{/* Title */}
+									<h3
+										className='font-heading font-bold text-lg mb-3 tracking-tight transition-colors duration-300 group-hover:text-silver'
+										style={{ color: 'hsl(var(--foreground))' }}>
+										{svc.title}
+									</h3>
+
+									{/* Description */}
+									<p
+										className='text-sm leading-relaxed font-light mb-5'
+										style={{ color: 'hsl(var(--text-3))' }}>
+										{svc.description}
+									</p>
+
+									{/* Tags with animations */}
+									<div className='flex flex-wrap gap-2 mb-5'>
+										{svc.tags.map((t, idx) => (
+											<motion.span
+												key={t}
+												initial={{ opacity: 0, scale: 0.8 }}
+												animate={
+													isHovered ?
+														{ opacity: 1, scale: 1 }
+													:	{ opacity: 0.6, scale: 0.9 }
+												}
+												transition={{ delay: idx * 0.05 }}
+												className='text-xs px-2.5 py-1 border tracking-wide transition-all duration-300'
+												style={{
+													borderColor:
+														isHovered ? svc.color : 'hsl(var(--border))',
+													color: isHovered ? svc.color : 'hsl(var(--silver))',
+													background:
+														isHovered ? `${svc.color}10` : 'hsl(var(--accent))',
+												}}>
+												{t}
+											</motion.span>
+										))}
+									</div>
+
+									{/* Learn More Link */}
+									<MotionButton
+										asChild
+										variant='link'
+										initial={{ opacity: 0, x: -10 }}
+										animate={
+											isHovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }
+										}
+										transition={{ duration: 0.3 }}
+										className='p-0 h-auto text-xs uppercase tracking-wider group/link hover:no-underline'
+										style={{ color: svc.color }}>
+										<Link href='#'>
+											Learn More
+											<ArrowRight
+												size={12}
+												className='ml-2 group-hover/link:translate-x-1 transition-transform'
+											/>
+										</Link>
+									</MotionButton>
 								</div>
 
-								{/* Title */}
-								<h3
-									className='font-heading font-bold text-base mb-2 tracking-tight'
-									style={{ color: 'hsl(var(--foreground))' }}>
-									{svc.title}
-								</h3>
-
-								{/* Desc */}
-								<p
-									className='text-sm leading-relaxed font-light mb-4'
-									style={{ color: 'hsl(var(--text-3))' }}>
-									{svc.description}
-								</p>
-
-								{/* Tags */}
-								<div className='flex flex-wrap gap-1.5'>
-									{svc.tags.map((t) => (
-										<span
-											key={t}
-											className='text-xs px-2 py-0.5 border tracking-wide'
-											style={{
-												borderColor: 'hsl(var(--border))',
-												color: 'hsl(var(--silver))',
-												background: 'hsl(var(--accent))',
-											}}>
-											{t}
-										</span>
-									))}
-								</div>
+								{/* Bottom Border Animation */}
+								<motion.div
+									className='absolute bottom-0 left-0 h-px bg-gradient-to-r from-silver to-transparent'
+									initial={{ width: 0 }}
+									animate={isHovered ? { width: '100%' } : { width: 0 }}
+									transition={{ duration: 0.4 }}
+								/>
 							</motion.div>
 						);
 					})}
-				</div>
+				</motion.div>
+
+				{/* Stats Section */}
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					animate={isInView ? { opacity: 1, y: 0 } : {}}
+					transition={{ delay: 0.8, duration: 0.6 }}
+					className='mt-16 pt-12 border-t'
+					style={{ borderColor: 'hsl(var(--border))' }}>
+					<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+						{STATS.map((stat, index) => (
+							<MotionButton
+								key={index}
+								variant='ghost'
+								asChild={false}
+								whileHover={{ y: -5 }}
+								className='flex flex-col h-auto p-4 text-center group cursor-pointer hover:bg-transparent'>
+								<div className='inline-flex items-center justify-center w-12 h-12 mb-3 border-2 border-silver/20 group-hover:border-silver transition-all duration-300'>
+									<stat.icon
+										size={20}
+										className='text-silver/60 group-hover:text-silver transition-colors'
+									/>
+								</div>
+								<motion.div
+									initial={{ scale: 0 }}
+									animate={isInView ? { scale: 1 } : {}}
+									transition={{ delay: 1 + index * 0.1, type: 'spring' }}
+									className='text-3xl font-bold mb-1 bg-gradient-to-r from-foreground to-silver bg-clip-text text-transparent'>
+									{stat.value}
+								</motion.div>
+								<div className='text-xs uppercase tracking-wider text-silver/60'>
+									{stat.label}
+								</div>
+							</MotionButton>
+						))}
+					</div>
+				</motion.div>
+
+				{/* CTA Banner */}
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={isInView ? { opacity: 1 } : {}}
+					transition={{ delay: 1.2, duration: 0.6 }}
+					className='mt-12 p-6 border border-silver/20 bg-gradient-to-r from-silver/5 to-transparent'>
+					<div className='flex flex-col md:flex-row items-center justify-between gap-4'>
+						<div className='flex items-center gap-3'>
+							<Zap
+								size={20}
+								className='text-silver'
+							/>
+							<div>
+								<div className='text-sm font-medium'>
+									Need a custom solution?
+								</div>
+								<div className='text-xs text-silver/60'>
+									We build exactly what you need
+								</div>
+							</div>
+						</div>
+						<MotionButton
+							asChild
+							variant='outline'
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							className='px-6 py-2 text-xs uppercase tracking-widest border-silver/20 hover:border-silver bg-transparent'>
+							<Link href='#contact'>Contact Our Team →</Link>
+						</MotionButton>
+					</div>
+				</motion.div>
 			</div>
 		</section>
 	);
