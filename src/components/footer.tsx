@@ -1,5 +1,6 @@
 /** @format */
 'use client';
+
 // components/footer.tsx
 import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -21,18 +22,11 @@ const SOCIALS = [
 	{ label: 'yt', href: '#' },
 ];
 
-const linkStyle: React.CSSProperties = {
-	fontSize: '0.825rem',
-	fontWeight: 300,
-	color: 'hsl(var(--text-3))',
-	textDecoration: 'none',
-	transition: 'color 0.2s',
-};
-
 export function Footer() {
 	return (
 		<footer
 			style={{
+				// --secondary is now a subtle ice surface, not a vibrant blue
 				background: 'hsl(var(--secondary))',
 				borderTop: '1px solid hsl(var(--border))',
 			}}>
@@ -43,12 +37,14 @@ export function Footer() {
 						<div
 							className='font-heading font-extrabold text-lg tracking-tight mb-2'
 							style={{ color: 'hsl(var(--foreground))' }}>
-							Zat<span style={{ color: 'hsl(var(--chrome))' }}>Go</span>{' '}
+							Zat
+							{/* --accent-blue: ice-blue accent on logo */}
+							<span style={{ color: 'hsl(var(--accent-blue))' }}>Go</span>{' '}
 							Innovation
 						</div>
 						<p
 							className='text-xs leading-relaxed font-light'
-							style={{ color: 'hsl(var(--text-3))' }}>
+							style={{ color: 'hsl(var(--muted-foreground))' }}>
 							Building smart software solutions for modern businesses worldwide.
 						</p>
 
@@ -61,7 +57,7 @@ export function Footer() {
 								<div
 									key={val}
 									className='flex items-center gap-2'
-									style={{ color: 'hsl(var(--text-3))' }}>
+									style={{ color: 'hsl(var(--muted-foreground))' }}>
 									<Icon size={11} />
 									<span className='text-xs font-light'>{val}</span>
 								</div>
@@ -69,11 +65,11 @@ export function Footer() {
 						</div>
 					</div>
 
-					{/* Nav */}
+					{/* Navigation */}
 					<div>
 						<div
 							className='text-xs font-semibold uppercase tracking-widest mb-4'
-							style={{ color: 'hsl(var(--silver))' }}>
+							style={{ color: 'hsl(var(--accent-pink))' }}>
 							Navigation
 						</div>
 						<ul className='space-y-2.5'>
@@ -81,8 +77,8 @@ export function Footer() {
 								<li key={name}>
 									<Link
 										href={`#${name.toLowerCase()}`}
-										style={linkStyle}
-										className='hover:text-foreground transition-colors'>
+										className='text-xs font-light transition-colors hover:text-foreground'
+										style={{ color: 'hsl(var(--muted-foreground))' }}>
 										{name}
 									</Link>
 								</li>
@@ -94,7 +90,7 @@ export function Footer() {
 					<div>
 						<div
 							className='text-xs font-semibold uppercase tracking-widest mb-4'
-							style={{ color: 'hsl(var(--silver))' }}>
+							style={{ color: 'hsl(var(--accent-pink))' }}>
 							Services
 						</div>
 						<ul className='space-y-2.5'>
@@ -102,8 +98,8 @@ export function Footer() {
 								<li key={name}>
 									<Link
 										href='#services'
-										style={linkStyle}
-										className='hover:text-foreground transition-colors'>
+										className='text-xs font-light transition-colors hover:text-foreground'
+										style={{ color: 'hsl(var(--muted-foreground))' }}>
 										{name}
 									</Link>
 								</li>
@@ -115,7 +111,7 @@ export function Footer() {
 					<div>
 						<div
 							className='text-xs font-semibold uppercase tracking-widest mb-4'
-							style={{ color: 'hsl(var(--silver))' }}>
+							style={{ color: 'hsl(var(--accent-pink))' }}>
 							Legal
 						</div>
 						<ul className='space-y-2.5'>
@@ -123,8 +119,8 @@ export function Footer() {
 								<li key={name}>
 									<Link
 										href='#'
-										style={linkStyle}
-										className='hover:text-foreground transition-colors'>
+										className='text-xs font-light transition-colors hover:text-foreground'
+										style={{ color: 'hsl(var(--muted-foreground))' }}>
 										{name}
 									</Link>
 								</li>
@@ -139,7 +135,7 @@ export function Footer() {
 					style={{ borderTop: '1px solid hsl(var(--border))' }}>
 					<p
 						className='text-xs font-light'
-						style={{ color: 'hsl(var(--text-3))' }}>
+						style={{ color: 'hsl(var(--muted-foreground))' }}>
 						© {new Date().getFullYear()} ZatGo Innovation. All rights reserved.
 					</p>
 
@@ -152,7 +148,11 @@ export function Footer() {
 								size='icon'
 								whileHover={{ scale: 1.1 }}
 								whileTap={{ scale: 0.9 }}
-								className='w-8 h-8 rounded-none border bg-transparent text-muted-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-colors'>
+								className='w-8 h-8 rounded-none border bg-transparent transition-colors'
+								style={{
+									color: 'hsl(var(--muted-foreground))',
+									borderColor: 'hsl(var(--border))',
+								}}>
 								<Link href={href}>{label}</Link>
 							</MotionButton>
 						))}

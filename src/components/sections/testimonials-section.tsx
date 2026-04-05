@@ -141,8 +141,8 @@ export function TestimonialsSection() {
 				className='absolute inset-0 overflow-hidden pointer-events-none'
 				style={{ y: backgroundY }}>
 				{/* Gradient Orbs */}
-				<div className='absolute top-10 left-10 w-72 h-72 rounded-full bg-gradient-to-r from-silver/5 to-transparent blur-3xl' />
-				<div className='absolute bottom-10 right-10 w-96 h-96 rounded-full bg-gradient-to-l from-silver/5 to-transparent blur-3xl' />
+				<div className='absolute top-10 left-10 w-72 h-72 rounded-full bg-gradient-to-r from-neutral/5 to-transparent blur-3xl' />
+				<div className='absolute bottom-10 right-10 w-96 h-96 rounded-full bg-gradient-to-l from-neutral/5 to-transparent blur-3xl' />
 
 				{/* Quotation marks background */}
 				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02]'>
@@ -174,10 +174,10 @@ export function TestimonialsSection() {
 							initial={{ opacity: 0, x: -20 }}
 							animate={isInView ? { opacity: 1, x: 0 } : {}}
 							transition={{ delay: 0.2 }}
-							className='inline-flex items-center gap-2 px-3 py-1 mb-4 border border-silver/20 bg-silver/5'>
+							className='inline-flex items-center gap-2 px-3 py-1 mb-4 border border-neutral/20 bg-neutral/5'>
 							<MessageCircle
 								size={12}
-								style={{ color: 'hsl(var(--silver))' }}
+								style={{ color: 'hsl(var(--neutral))' }}
 							/>
 							<span className='section-eyebrow text-xs tracking-[0.2em] uppercase'>
 								Client stories
@@ -189,14 +189,14 @@ export function TestimonialsSection() {
 							style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
 							What Our{' '}
 							<span className='relative inline-block'>
-								<span className='bg-gradient-to-r from-silver via-silver-dark to-chrome bg-clip-text text-transparent'>
+								<span className='bg-gradient-to-r from-neutral via-neutral-dark to-neutral-light bg-clip-text text-transparent'>
 									Clients
 								</span>
 								<motion.span
 									initial={{ width: 0 }}
 									animate={isInView ? { width: '100%' } : {}}
 									transition={{ delay: 0.6, duration: 0.8 }}
-									className='absolute bottom-0 left-0 h-px bg-gradient-to-r from-silver to-transparent'
+									className='absolute bottom-0 left-0 h-px bg-gradient-to-r from-neutral to-transparent'
 								/>
 							</span>
 							<br />
@@ -249,15 +249,15 @@ export function TestimonialsSection() {
 						<motion.div
 							variants={itemVariants}
 							className='relative'>
-							<div className='absolute -top-6 -left-6 w-16 h-16 flex items-center justify-center bg-gradient-to-br from-silver/20 to-transparent'>
+							<div className='absolute -top-6 -left-6 w-16 h-16 flex items-center justify-center bg-gradient-to-br from-accent-pink/20 to-transparent'>
 								<Quote
 									size={24}
-									style={{ color: 'hsl(var(--silver))' }}
+									style={{ color: 'hsl(var(--accent-pink))' }}
 								/>
 							</div>
 							<div
 								className='p-8 border-l-4'
-								style={{ borderColor: 'hsl(var(--silver))' }}>
+								style={{ borderColor: 'hsl(var(--accent-pink))' }}>
 								<p
 									className='text-lg leading-relaxed font-light italic mb-6'
 									style={{ color: 'hsl(var(--text-2))' }}>
@@ -265,7 +265,7 @@ export function TestimonialsSection() {
 								</p>
 								<div className='flex items-center gap-2 text-xs uppercase tracking-wider text-silver/60'>
 									<span>Featured Review</span>
-									<div className='w-8 h-px bg-silver/30' />
+									<div className='w-8 h-px bg-accent-pink/30' />
 								</div>
 							</div>
 						</motion.div>
@@ -282,7 +282,7 @@ export function TestimonialsSection() {
 								transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
 								className='relative group'>
 								{/* Card Glow Effect */}
-								<motion.div className='absolute -inset-1 bg-gradient-to-r from-silver/20 via-silver/5 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+								<motion.div className='absolute -inset-1 bg-gradient-to-r from-neutral/20 via-neutral/5 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
 
 								<div className='relative chrome-card p-8 md:p-10 overflow-hidden'>
 									{/* Animated Background Gradient */}
@@ -290,7 +290,7 @@ export function TestimonialsSection() {
 										className='absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-700'
 										style={{
 											background:
-												'radial-gradient(circle, hsl(var(--silver)), transparent)',
+												'radial-gradient(circle, hsl(var(--neutral)), transparent)',
 										}}
 									/>
 
@@ -309,8 +309,8 @@ export function TestimonialsSection() {
 												whileHover={{ scale: 1.2, rotate: 5 }}>
 												<Star
 													size={16}
-													fill='hsl(var(--silver))'
-													style={{ color: 'hsl(var(--silver))' }}
+													fill='hsl(var(--neutral))'
+													style={{ color: 'hsl(var(--neutral))' }}
 												/>
 											</motion.div>
 										))}
@@ -324,7 +324,7 @@ export function TestimonialsSection() {
 										<Quote
 											size={24}
 											className='mb-4 opacity-30'
-											style={{ color: 'hsl(var(--silver))' }}
+											style={{ color: 'hsl(var(--neutral))' }}
 										/>
 										<p
 											className='text-base md:text-lg leading-relaxed font-light italic mb-6'
@@ -345,11 +345,11 @@ export function TestimonialsSection() {
 											whileHover={{ scale: 1.1, rotate: 5 }}
 											className='relative'>
 											<div
-												className='w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-300 group-hover:border-silver'
+												className='w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-300 group-hover:border-neutral'
 												style={{
 													background: 'hsl(var(--accent))',
 													borderColor: 'hsl(var(--border))',
-													color: 'hsl(var(--silver-dark))',
+													color: 'hsl(var(--neutral-dark))',
 												}}>
 												{t.initials}
 											</div>
@@ -376,7 +376,7 @@ export function TestimonialsSection() {
 											{/* Additional Info */}
 											<div
 												className='flex items-center gap-3 text-[0.65rem] uppercase tracking-wider'
-												style={{ color: 'hsl(var(--chrome))' }}>
+												style={{ color: 'hsl(var(--neutral-light))' }}>
 												<div className='flex items-center gap-1'>
 													<Calendar size={10} />
 													<span>{t.date}</span>
@@ -394,12 +394,12 @@ export function TestimonialsSection() {
 											initial={{ opacity: 0, scale: 0 }}
 											animate={{ opacity: 1, scale: 1 }}
 											transition={{ delay: 0.6 }}
-											className='hidden sm:flex items-center gap-1 px-2 py-1 border border-silver/20 bg-silver/5'>
+											className='hidden sm:flex items-center gap-1 px-2 py-1 border border-neutral/20 bg-neutral/5'>
 											<CheckIcon
 												size={10}
-												className='text-silver'
+												className='text-neutral'
 											/>
-											<span className='text-[0.6rem] uppercase tracking-wider text-silver/80'>
+											<span className='text-[0.6rem] uppercase tracking-wider text-neutral/80'>
 												Verified
 											</span>
 										</motion.div>
@@ -432,12 +432,14 @@ export function TestimonialsSection() {
 								style={{
 									width: i === current ? '32px' : '8px',
 									background:
-										i === current ? 'hsl(var(--silver))' : 'hsl(var(--border))',
+										i === current ?
+											'hsl(var(--neutral))'
+										:	'hsl(var(--border))',
 								}}>
 								{i === current && (
 									<motion.div
 										layoutId='activeDot'
-										className='absolute inset-0 bg-gradient-to-r from-silver to-silver-dark'
+										className='absolute inset-0 bg-gradient-to-r from-neutral to-neutral-dark'
 										transition={{ type: 'spring', stiffness: 300, damping: 30 }}
 									/>
 								)}
@@ -447,12 +449,12 @@ export function TestimonialsSection() {
 
 					{/* Progress Indicator */}
 					<div className='flex items-center gap-2'>
-						<span className='text-[0.65rem] uppercase tracking-wider text-silver/40'>
+						<span className='text-[0.65rem] uppercase tracking-wider text-neutral/40'>
 							{current + 1} / {TESTIMONIALS.length}
 						</span>
 						<div className='w-20 h-px bg-border relative overflow-hidden'>
 							<motion.div
-								className='absolute inset-0 bg-silver'
+								className='absolute inset-0 bg-neutral'
 								initial={{ x: '-100%' }}
 								animate={{
 									x: `${(current / (TESTIMONIALS.length - 1)) * 100}%`,

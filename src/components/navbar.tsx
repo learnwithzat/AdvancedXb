@@ -35,7 +35,7 @@ export function Navbar() {
 				'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
 				isScrolled ?
 					'bg-background/90 backdrop-blur-xl border-b border-border'
-				:	'bg-transparent',
+				:	'bg-transparent'
 			)}>
 			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-4 flex items-center justify-between'>
 				{/* Logo */}
@@ -43,11 +43,8 @@ export function Navbar() {
 					href='/'
 					className='font-heading font-extrabold text-xl tracking-tight'>
 					<span className='text-foreground'>Zat</span>
-					<span
-						style={{ color: 'hsl(var(--chrome))' }}
-						className='text-foreground'>
-						Go
-					</span>
+					{/* --accent-blue: ice-blue highlight */}
+					<span style={{ color: 'hsl(var(--accent-blue))' }}>Go</span>
 					<span className='text-foreground'> Innovation</span>
 				</Link>
 
@@ -57,13 +54,20 @@ export function Navbar() {
 						<Link
 							key={item.name}
 							href={item.href}
-							className='text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors'>
+							className='text-sm font-medium tracking-wide transition-colors'
+							style={{ color: 'hsl(var(--muted-foreground))' }}
+							onMouseEnter={(e) =>
+								(e.currentTarget.style.color = 'hsl(var(--foreground))')
+							}
+							onMouseLeave={(e) =>
+								(e.currentTarget.style.color = 'hsl(var(--muted-foreground))')
+							}>
 							{item.name}
 						</Link>
 					))}
 				</nav>
 
-				{/* CTA */}
+				{/* Desktop CTA */}
 				<div className='hidden md:flex items-center gap-3'>
 					<ThemeToggle />
 					<MotionButton
@@ -102,8 +106,8 @@ export function Navbar() {
 								<Link
 									key={item.name}
 									href={item.href}
-									className='py-3 text-sm border-b border-border last:border-0'
-									style={{ color: 'hsl(var(--text-3))' }}
+									className='py-3 text-sm border-b border-border last:border-0 transition-colors hover:text-foreground'
+									style={{ color: 'hsl(var(--muted-foreground))' }}
 									onClick={() => setIsMobileOpen(false)}>
 									{item.name}
 								</Link>

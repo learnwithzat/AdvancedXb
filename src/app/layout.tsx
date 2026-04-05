@@ -10,7 +10,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 
 const poppins = Poppins({
 	subsets: ['latin'],
-	weight: ['300', '400', '500', '600', '700', '800'], // Or 'variable' if supported by your version
+	weight: ['300', '400', '500', '600', '700', '800'],
 	variable: '--font-poppins',
 	display: 'swap',
 	preload: true,
@@ -35,19 +35,10 @@ export const metadata: Metadata = {
 		'cloud solutions',
 		'ZatGo Innovation',
 	],
-	authors: [
-		{
-			name: 'ZatGo Innovation',
-			url: 'https://zatgo.com',
-		},
-	],
+	authors: [{ name: 'ZatGo Innovation', url: 'https://zatgo.com' }],
 	creator: 'ZatGo Innovation',
 	publisher: 'ZatGo Innovation',
-	formatDetection: {
-		email: false,
-		address: false,
-		telephone: false,
-	},
+	formatDetection: { email: false, address: false, telephone: false },
 	openGraph: {
 		type: 'website',
 		locale: 'en_US',
@@ -85,27 +76,24 @@ export const metadata: Metadata = {
 		},
 	},
 	verification: {
-		google: 'your-google-verification-code', // Add your Google verification code
-		// yandex: 'your-yandex-verification-code',
-		// yahoo: 'your-yahoo-verification-code',
+		google: 'your-google-verification-code',
 	},
 	category: 'technology',
 	alternates: {
 		canonical: 'https://zatgo.com',
-		languages: {
-			'en-US': 'https://zatgo.com',
-			// 'es-ES': 'https://zatgo.com/es',
-		},
+		languages: { 'en-US': 'https://zatgo.com' },
 	},
 };
 
-// Loading component for Suspense
 function LoadingFallback() {
 	return (
 		<div className='min-h-screen flex items-center justify-center'>
 			<div className='relative'>
-				<div className='w-12 h-12 border-2 border-silver/20 border-t-silver rounded-full animate-spin' />
-				<div className='mt-4 text-xs text-silver/60 animate-pulse'>
+				{/* Spinner uses gradient tokens */}
+				<div className='spinner-gradient w-12 h-12' />
+				<div
+					className='mt-4 text-xs animate-pulse text-center'
+					style={{ color: 'hsl(var(--muted-foreground))' }}>
 					Loading...
 				</div>
 			</div>
@@ -130,10 +118,10 @@ export default function RootLayout({
 					defaultTheme='system'
 					enableSystem
 					disableTransitionOnChange>
-					{/* Skip to content link for accessibility */}
+					{/* Skip to content */}
 					<a
 						href='#main-content'
-						className='sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary'>
+						className='sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring'>
 						Skip to main content
 					</a>
 
@@ -156,13 +144,13 @@ export default function RootLayout({
 	);
 }
 
-// Optional: Add viewport configuration
 export const viewport = {
 	width: 'device-width',
 	initialScale: 1,
 	maximumScale: 5,
 	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: '#ffffff' },
-		{ media: '(prefers-color-scheme: dark)', color: '#000000' },
+		// Ice-white for light, deep slate for dark
+		{ media: '(prefers-color-scheme: light)', color: 'hsl(210 20% 97%)' },
+		{ media: '(prefers-color-scheme: dark)', color: 'hsl(218 22% 8%)' },
 	],
 };

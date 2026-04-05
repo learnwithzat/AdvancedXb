@@ -107,14 +107,14 @@ export function AboutSection() {
 			<motion.div
 				className='absolute inset-0 overflow-hidden pointer-events-none'
 				style={{ y }}>
-				<div className='absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-silver/5 to-transparent rounded-full blur-3xl animate-pulse' />
-				<div className='absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-l from-silver/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000' />
+				<div className='absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-accent-pink/5 to-transparent rounded-full blur-3xl animate-pulse' />
+				<div className='absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-l from-accent-pink/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000' />
 
 				{/* Grid Pattern Overlay */}
 				<div
 					className='absolute inset-0 opacity-[0.02]'
 					style={{
-						backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(var(--foreground)) 2px, hsl(var(--foreground)) 4px)`,
+						backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(var(--border)) 2px, hsl(var(--border)) 4px)`,
 						backgroundSize: '100% 4px',
 					}}
 				/>
@@ -134,10 +134,10 @@ export function AboutSection() {
 							transition={{ delay: 0.2, duration: 0.4 }}
 							className='inline-flex items-center gap-2 px-3 py-1 mb-6 border'
 							style={{ borderColor: 'hsl(var(--border))' }}>
-							<span className='w-1.5 h-1.5 rounded-full bg-silver animate-pulse' />
+							<span className='w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse' />
 							<span
 								className='text-[0.65rem] uppercase tracking-[0.2em] font-medium'
-								style={{ color: 'hsl(var(--silver))' }}>
+								style={{ color: 'hsl(var(--accent-pink))' }}>
 								Since 2020
 							</span>
 						</motion.div>
@@ -148,7 +148,7 @@ export function AboutSection() {
 							animate={isInView ? { opacity: 1 } : {}}
 							transition={{ delay: 0.3 }}
 							className='section-eyebrow mb-3 text-xs tracking-[0.2em] uppercase'
-							style={{ color: 'hsl(var(--chrome))' }}>
+							style={{ color: 'hsl(var(--accent-blue))' }}>
 							Who we are
 						</motion.div>
 
@@ -161,14 +161,14 @@ export function AboutSection() {
 							style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
 							Built to{' '}
 							<span className='relative inline-block'>
-								<span className='bg-gradient-to-r from-silver via-silver-dark to-chrome bg-clip-text text-transparent'>
+								<span className='bg-gradient-to-r from-accent-pink via-accent-pink-dark to-accent-blue bg-clip-text text-transparent'>
 									Build
 								</span>
 								<motion.span
 									initial={{ width: 0 }}
 									animate={isInView ? { width: '100%' } : {}}
 									transition={{ delay: 0.8, duration: 0.8 }}
-									className='absolute bottom-0 left-0 h-px bg-gradient-to-r from-silver to-transparent'
+									className='absolute bottom-0 left-0 h-px bg-gradient-to-r from-accent-pink to-transparent'
 								/>
 							</span>
 							<br />
@@ -188,7 +188,7 @@ export function AboutSection() {
 										animate={isInView ? { opacity: 1, y: 0 } : {}}
 										transition={{ delay: 0.5 + index * 0.3, duration: 0.6 }}
 										className='text-sm leading-relaxed font-light relative'
-										style={{ color: 'hsl(var(--text-3))' }}>
+										style={{ color: 'hsl(var(--muted-foreground))' }}>
 										{line}
 										{/* Optional animated underline */}
 										<motion.span
@@ -242,7 +242,7 @@ export function AboutSection() {
 									<stat.icon
 										size={20}
 										className='mx-auto mb-2 transition-colors group-hover:text-silver'
-										style={{ color: 'hsl(var(--chrome))' }}
+										style={{ color: 'hsl(var(--accent-blue))' }}
 									/>
 									<motion.div
 										initial={{ opacity: 0 }}
@@ -254,7 +254,7 @@ export function AboutSection() {
 									</motion.div>
 									<div
 										className='text-[0.65rem] uppercase tracking-wider'
-										style={{ color: 'hsl(var(--chrome))' }}>
+										style={{ color: 'hsl(var(--accent-blue))' }}>
 										{stat.label}
 									</div>
 								</MotionButton>
@@ -293,7 +293,7 @@ export function AboutSection() {
 											i === 0 ? '1px solid hsl(var(--border))' : 'none',
 										transition: 'all 0.3s ease',
 									}}
-									whileHover={{ borderColor: 'hsl(var(--silver))' }}>
+									whileHover={{ borderColor: 'hsl(var(--accent-pink))' }}>
 									{/* Number with animated background */}
 									<motion.div
 										variants={numberVariants}
@@ -306,8 +306,8 @@ export function AboutSection() {
 												transition: 'all 0.3s ease',
 											}}>
 											<span
-												className='font-heading font-bold text-xs tracking-widest transition-colors duration-300 group-hover:text-silver'
-												style={{ color: 'hsl(var(--chrome))' }}>
+												className='font-heading font-bold text-xs tracking-widest transition-colors duration-300 group-hover:text-accent-pink'
+												style={{ color: 'hsl(var(--accent-blue))' }}>
 												{item.num}
 											</span>
 										</div>
@@ -330,20 +330,20 @@ export function AboutSection() {
 												style={{ color: item.color }}
 											/>
 											<h3
-												className='font-heading font-bold text-sm tracking-tight transition-colors duration-300 group-hover:text-silver'
+												className='font-heading font-bold text-sm tracking-tight transition-colors duration-300 group-hover:text-accent-pink'
 												style={{ color: 'hsl(var(--foreground))' }}>
 												{item.title}
 											</h3>
 										</div>
 										<p
 											className='text-sm leading-relaxed font-light transition-colors duration-300'
-											style={{ color: 'hsl(var(--text-3))' }}>
+											style={{ color: 'hsl(var(--muted-foreground))' }}>
 											{item.desc}
 										</p>
 
 										{/* Animated underline on hover */}
 										<motion.div
-											className='h-px bg-gradient-to-r from-silver to-transparent mt-3'
+											className='h-px bg-gradient-to-r from-accent-pink to-transparent mt-3'
 											initial={{ width: 0 }}
 											whileHover={{ width: '100%' }}
 											transition={{ duration: 0.3 }}
@@ -362,28 +362,28 @@ export function AboutSection() {
 							style={{ borderColor: 'hsl(var(--border))' }}>
 							<div className='flex items-center justify-between'>
 								<div className='flex items-center gap-3'>
-									<div className='w-8 h-8 flex items-center justify-center bg-silver/10'>
+									<div className='w-8 h-8 flex items-center justify-center bg-accent-pink/10'>
 										<Award
 											size={16}
-											style={{ color: 'hsl(var(--silver))' }}
+											style={{ color: 'hsl(var(--accent-pink))' }}
 										/>
 									</div>
 									<div>
 										<div
 											className='text-[0.7rem] uppercase tracking-wider'
-											style={{ color: 'hsl(var(--chrome))' }}>
+											style={{ color: 'hsl(var(--accent-blue))' }}>
 											ISO Certified
 										</div>
 										<div
 											className='text-xs font-light'
-											style={{ color: 'hsl(var(--text-3))' }}>
+											style={{ color: 'hsl(var(--muted-foreground))' }}>
 											Quality Management System
 										</div>
 									</div>
 								</div>
 								<ChevronRight
 									size={14}
-									style={{ color: 'hsl(var(--silver))' }}
+									style={{ color: 'hsl(var(--accent-pink))' }}
 								/>
 							</div>
 						</motion.div>

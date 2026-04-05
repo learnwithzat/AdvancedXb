@@ -53,7 +53,7 @@ const labelStyle: React.CSSProperties = {
 	fontSize: '0.7rem',
 	letterSpacing: '0.15em',
 	textTransform: 'uppercase',
-	color: 'hsl(var(--silver-dark))',
+	color: 'hsl(var(--accent-pink-dark))',
 	marginBottom: '0.5rem',
 	fontWeight: 500,
 };
@@ -100,7 +100,8 @@ function SubmitButton({
 			whileTap={!isSent ? { scale: 0.98 } : {}}
 			className='relative w-full py-6 uppercase tracking-[0.15em] font-heading'
 			style={{
-				background: isSent ? 'hsl(var(--silver))' : 'hsl(var(--foreground))',
+				background:
+					isSent ? 'hsl(var(--accent-pink))' : 'hsl(var(--foreground))',
 				color: 'hsl(var(--background))',
 				border: 'none',
 				cursor: isSent ? 'default' : 'pointer',
@@ -122,7 +123,7 @@ function SubmitButton({
 			</span>
 			{!isSent && (
 				<motion.div
-					className='absolute inset-0 bg-gradient-to-r from-silver to-silver-dark'
+					className='absolute inset-0 bg-gradient-to-r from-accent-pink to-accent-pink-dark'
 					initial={{ x: '-100%' }}
 					whileHover={{ x: 0 }}
 					transition={{ duration: 0.3 }}
@@ -137,7 +138,7 @@ function SubmitButton({
 
 function floatingLabelStyle(
 	value: string,
-	isFocused: boolean,
+	isFocused: boolean
 ): React.CSSProperties {
 	const active = isFocused || !!value; // fix: was checking global focused, not per-field
 	return {
@@ -145,7 +146,8 @@ function floatingLabelStyle(
 		left: '1rem',
 		top: active ? '0.6rem' : '0.85rem',
 		fontSize: active ? '0.65rem' : '0.875rem',
-		color: isFocused ? 'hsl(var(--silver))' : 'hsl(var(--silver-dark))',
+		color:
+			isFocused ? 'hsl(var(--accent-pink))' : 'hsl(var(--accent-pink-dark))',
 		pointerEvents: 'none',
 		transition: 'all 0.2s ease',
 		backgroundColor: 'hsl(var(--card))',
@@ -169,7 +171,7 @@ export function ContactSection() {
 	const handleInputChange = (
 		e: React.ChangeEvent<
 			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-		>,
+		>
 	) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
@@ -223,8 +225,8 @@ export function ContactSection() {
 			style={{ background: 'hsl(var(--background))' }}>
 			{/* Background decoration */}
 			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
-				<div className='absolute -top-40 -right-40 w-80 h-80 rounded-full bg-gradient-to-br from-silver/5 to-transparent blur-3xl' />
-				<div className='absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-gradient-to-tr from-silver/5 to-transparent blur-3xl' />
+				<div className='absolute -top-40 -right-40 w-80 h-80 rounded-full bg-gradient-to-br from-accent-pink/5 to-transparent blur-3xl' />
+				<div className='absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-gradient-to-tr from-accent-pink/5 to-transparent blur-3xl' />
 			</div>
 
 			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10'>
@@ -235,26 +237,24 @@ export function ContactSection() {
 						animate={isInView ? { opacity: 1, x: 0 } : {}}
 						transition={{ duration: 0.6, ease: 'easeOut' }}>
 						<div className='relative inline-block mb-4'>
-							<div
-								className='section-eyebrow text-xs tracking-[0.2em] uppercase font-medium mb-2'
-								style={{ color: 'hsl(var(--silver))' }}>
+							<div className='section-eyebrow text-xs tracking-[0.2em] uppercase font-medium mb-2'>
 								Let&apos;s talk
 							</div>
-							<div className='absolute -bottom-1 left-0 w-12 h-px bg-gradient-to-r from-silver to-transparent' />
+							<div className='absolute -bottom-1 left-0 w-12 h-px bg-gradient-to-r from-accent-pink to-transparent' />
 						</div>
 
 						<h2
 							className='font-heading font-bold tracking-tighter leading-[1.1] mb-6'
 							style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
 							Start Your
-							<span className='block mt-2 bg-gradient-to-r from-foreground to-silver bg-clip-text text-transparent'>
+							<span className='block mt-2 bg-gradient-to-r from-foreground to-accent-pink bg-clip-text text-transparent'>
 								Project
 							</span>
 						</h2>
 
 						<p
 							className='text-sm leading-relaxed font-light mb-10 max-w-md'
-							style={{ color: 'hsl(var(--text-3))' }}>
+							style={{ color: 'hsl(var(--muted-foreground))' }}>
 							{/* fix: was &ll (typo) */}
 							We&apos;d love to hear about your project. Tell us what
 							you&apos;re building and we&apos;ll get back to you within 24
@@ -274,10 +274,10 @@ export function ContactSection() {
 									whileHover={{ x: 5 }}
 									transition={{ type: 'spring', stiffness: 300 }}>
 									<div
-										className='w-10 h-10 flex items-center justify-center border transition-all duration-300 group-hover:border-silver group-hover:scale-110'
+										className='w-10 h-10 flex items-center justify-center border transition-all duration-300 group-hover:border-accent-pink group-hover:scale-110'
 										style={{
 											borderColor: 'hsl(var(--border))',
-											color: 'hsl(var(--silver))',
+											color: 'hsl(var(--accent-pink))',
 											background: 'hsl(var(--card))',
 										}}>
 										<Icon
@@ -287,12 +287,12 @@ export function ContactSection() {
 									</div>
 									<div>
 										<div
-											className='text-[0.7rem] uppercase tracking-[0.15em] mb-1 transition-colors group-hover:text-silver'
-											style={{ color: 'hsl(var(--chrome))' }}>
+											className='text-[0.7rem] uppercase tracking-[0.15em] mb-1 transition-colors group-hover:text-accent-pink'
+											style={{ color: 'hsl(var(--accent-blue))' }}>
 											{label}
 										</div>
 										<div
-											className='text-sm font-light transition-colors group-hover:text-silver'
+											className='text-sm font-light transition-colors group-hover:text-accent-pink'
 											style={{ color: 'hsl(var(--foreground))' }}>
 											{value}
 										</div>
@@ -310,9 +310,9 @@ export function ContactSection() {
 							<div className='flex items-center gap-2 text-[0.7rem] uppercase tracking-wider'>
 								<CheckCircle
 									size={14}
-									style={{ color: 'hsl(var(--silver))' }}
+									style={{ color: 'hsl(var(--accent-pink))' }}
 								/>
-								<span style={{ color: 'hsl(var(--chrome))' }}>
+								<span style={{ color: 'hsl(var(--accent-blue))' }}>
 									Trusted by 500+ clients worldwide
 								</span>
 							</div>
@@ -346,7 +346,7 @@ export function ContactSection() {
 										<div
 											style={floatingLabelStyle(
 												formData.firstName,
-												focused === 'firstName',
+												focused === 'firstName'
 											)}>
 											First Name
 										</div>
@@ -364,7 +364,7 @@ export function ContactSection() {
 										<div
 											style={floatingLabelStyle(
 												formData.lastName,
-												focused === 'lastName',
+												focused === 'lastName'
 											)}>
 											Last Name
 										</div>
@@ -385,7 +385,7 @@ export function ContactSection() {
 									<div
 										style={floatingLabelStyle(
 											formData.email,
-											focused === 'email',
+											focused === 'email'
 										)}>
 										Email Address *
 									</div>
@@ -417,7 +417,7 @@ export function ContactSection() {
 										<div className='absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none'>
 											<ArrowRight
 												size={14}
-												style={{ color: 'hsl(var(--silver-dark))' }}
+												style={{ color: 'hsl(var(--accent-pink-dark))' }}
 											/>
 										</div>
 									</div>
@@ -436,7 +436,7 @@ export function ContactSection() {
 									<div
 										style={floatingLabelStyle(
 											formData.message,
-											focused === 'message',
+											focused === 'message'
 										)}>
 										Your Message
 									</div>
@@ -461,7 +461,7 @@ export function ContactSection() {
 
 								<p
 									className='text-[0.65rem] text-center mt-4'
-									style={{ color: 'hsl(var(--chrome))' }}>
+									style={{ color: 'hsl(var(--accent-blue))' }}>
 									We&apos;ll never share your information with third parties
 								</p>
 							</div>

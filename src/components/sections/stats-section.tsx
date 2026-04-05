@@ -137,7 +137,7 @@ export function StatsSection() {
 		<section
 			ref={sectionRef}
 			className='relative py-16 lg:py-20 overflow-hidden'
-			style={{ background: 'hsl(var(--foreground))' }}>
+			style={{ background: 'hsl(var(--secondary))' }}>
 			{/* Animated Background Elements */}
 			<motion.div
 				className='absolute inset-0 pointer-events-none'
@@ -147,7 +147,7 @@ export function StatsSection() {
 					className='absolute -top-20 -right-20 w-80 h-80 rounded-full'
 					style={{
 						background:
-							'radial-gradient(circle, rgba(192,192,192,0.08) 0%, transparent 70%)',
+							'radial-gradient(circle, hsla(var(--primary), 0.08) 0%, transparent 70%)',
 						scale,
 					}}
 					animate={{
@@ -165,7 +165,7 @@ export function StatsSection() {
 					className='absolute -bottom-20 -left-20 w-96 h-96 rounded-full'
 					style={{
 						background:
-							'radial-gradient(circle, rgba(192,192,192,0.05) 0%, transparent 70%)',
+							'radial-gradient(circle, hsla(var(--accent-pink), 0.05) 0%, transparent 70%)',
 						scale,
 					}}
 					animate={{
@@ -185,8 +185,8 @@ export function StatsSection() {
 					className='absolute inset-0'
 					style={{
 						backgroundImage: `
-							repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px),
-							repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)
+							repeating-linear-gradient(0deg, transparent, transparent 2px, hsla(var(--foreground), 0.03) 2px, hsla(var(--foreground), 0.03) 4px),
+							repeating-linear-gradient(90deg, transparent, transparent 2px, hsla(var(--foreground), 0.03) 2px, hsla(var(--foreground), 0.03) 4px)
 						`,
 						backgroundSize: '60px 60px',
 					}}
@@ -197,7 +197,7 @@ export function StatsSection() {
 					className='absolute top-1/2 left-0 w-full h-px'
 					style={{
 						background:
-							'linear-gradient(90deg, transparent, rgba(192,192,192,0.15), transparent)',
+							'linear-gradient(90deg, transparent, hsla(var(--primary), 0.15), transparent)',
 						scaleX: scale,
 					}}
 				/>
@@ -210,25 +210,25 @@ export function StatsSection() {
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 0.5 }}
 					className='text-center mb-12'>
-					<div className='inline-flex items-center gap-2 px-3 py-1 mb-4 border border-white/10 bg-white/5 backdrop-blur-sm'>
+					<div className='inline-flex items-center gap-2 px-3 py-1 mb-4 border border-primary/10 bg-primary/5 backdrop-blur-sm'>
 						<TrendingUp
 							size={12}
-							className='text-silver'
+							className='text-accent-pink'
 						/>
-						<span className='text-[0.65rem] uppercase tracking-[0.2em] font-medium text-white/60'>
+						<span className='text-[0.65rem] uppercase tracking-[0.2em] font-medium text-muted-foreground'>
 							Our Achievements
 						</span>
 					</div>
 					<h2
 						className='font-heading font-bold tracking-tighter leading-[1.1] mb-3'
 						style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)' }}>
-						<span className='text-white'>Numbers That</span>
+						<span className='text-foreground'>Numbers That</span>
 						<br />
-						<span className='bg-gradient-to-r from-silver via-silver-dark to-chrome bg-clip-text text-transparent'>
+						<span className='bg-gradient-to-r from-accent-pink via-accent-pink-dark to-accent-blue bg-clip-text text-transparent'>
 							Speak Volumes
 						</span>
 					</h2>
-					<p className='text-sm text-white/40 max-w-md mx-auto'>
+					<p className='text-sm text-muted-foreground max-w-md mx-auto'>
 						Our track record of excellence and client satisfaction
 					</p>
 				</motion.div>
@@ -238,13 +238,13 @@ export function StatsSection() {
 					variants={containerVariants}
 					initial='hidden'
 					animate={isInView ? 'visible' : 'hidden'}
-					className='grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10'>
+					className='grid grid-cols-2 lg:grid-cols-4 gap-px bg-border'>
 					{STATS.map((stat, i) => (
 						<MotionButton
 							key={i}
 							variant='ghost'
 							asChild={false}
-							className='group relative overflow-hidden bg-black/20 backdrop-blur-sm h-auto p-0 flex flex-col items-stretch rounded-none hover:bg-black/30'
+							className='group relative overflow-hidden bg-background h-auto p-0 flex flex-col items-stretch rounded-none hover:bg-secondary transition-colors'
 							whileHover={{ y: -5 }}
 							transition={{ duration: 0.3 }}>
 							{/* Hover Gradient */}
@@ -280,7 +280,7 @@ export function StatsSection() {
 										className='font-heading font-bold tracking-tighter'
 										style={{
 											fontSize: 'clamp(2rem, 4vw, 3rem)',
-											color: '#ffffff',
+											color: 'hsl(var(--foreground))',
 										}}>
 										{counters[i].toLocaleString()}
 									</span>
@@ -297,7 +297,7 @@ export function StatsSection() {
 								{/* Label */}
 								<div
 									className='text-xs uppercase tracking-widest mb-1 font-medium'
-									style={{ color: 'rgba(255,255,255,0.7)' }}>
+									style={{ color: 'hsl(var(--muted-foreground))' }}>
 									{stat.label}
 								</div>
 
@@ -336,20 +336,20 @@ export function StatsSection() {
 							whileHover={{ scale: 1.02 }}
 							whileTap={{ scale: 0.98 }}
 							asChild={false}
-							className='flex h-auto items-center justify-between p-6 border border-white/10 bg-white/5 backdrop-blur-sm group cursor-pointer rounded-none hover:bg-white/10'>
+							className='flex h-auto items-center justify-between p-6 border border-border bg-background group cursor-pointer rounded-none hover:bg-secondary transition-colors'>
 							<div className='flex items-center gap-4'>
-								<div className='w-10 h-10 flex items-center justify-center border border-white/20 group-hover:border-silver/50 transition-colors'>
+								<div className='w-10 h-10 flex items-center justify-center border border-border group-hover:border-accent-pink/50 transition-colors'>
 									<stat.icon
 										size={16}
-										className='text-silver/60 group-hover:text-silver'
+										className='text-accent-pink/60 group-hover:text-accent-pink'
 									/>
 								</div>
 								<div>
-									<div className='text-2xl font-bold text-white'>
+									<div className='text-2xl font-bold text-foreground'>
 										{stat.value}
 										{stat.suffix}
 									</div>
-									<div className='text-xs uppercase tracking-wider text-white/40'>
+									<div className='text-xs uppercase tracking-wider text-muted-foreground'>
 										{stat.label}
 									</div>
 								</div>
@@ -357,7 +357,7 @@ export function StatsSection() {
 							<motion.div
 								animate={{ x: [0, 5, 0] }}
 								transition={{ duration: 1, repeat: Infinity }}
-								className='text-silver/40'>
+								className='text-accent-pink/40'>
 								<Zap size={14} />
 							</motion.div>
 						</MotionButton>
@@ -369,9 +369,9 @@ export function StatsSection() {
 					initial={{ opacity: 0 }}
 					animate={isInView ? { opacity: 1 } : {}}
 					transition={{ delay: 1, duration: 0.5 }}
-					className='mt-8 pt-6 border-t border-white/10'>
+					className='mt-8 pt-6 border-t border-border'>
 					<div className='flex flex-wrap items-center justify-center gap-6'>
-						<span className='text-[0.65rem] uppercase tracking-wider text-white/40'>
+						<span className='text-[0.65rem] uppercase tracking-wider text-muted-foreground'>
 							Trusted by industry leaders
 						</span>
 						<div className='flex items-center gap-4'>
@@ -380,14 +380,14 @@ export function StatsSection() {
 									<motion.div
 										key={i}
 										whileHover={{ scale: 1.05 }}
-										className='flex items-center gap-1.5 text-[0.65rem] uppercase tracking-wider text-white/30 hover:text-white/50 transition-colors'>
+										className='flex items-center gap-1.5 text-[0.65rem] uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors'>
 										<CheckCircle
 											size={10}
-											className='text-silver/50'
+											className='text-accent-pink/50'
 										/>
 										<span>{badge}</span>
 									</motion.div>
-								),
+								)
 							)}
 						</div>
 					</div>

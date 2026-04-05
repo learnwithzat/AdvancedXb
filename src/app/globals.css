@@ -12,17 +12,25 @@
 	--font-mono: var(--font-geist-mono);
 	--font-heading: var(--font-poppins);
 
+	--color-accent-purple-light: hsl(var(--accent-purple-light));
 	--color-accent-purple: hsl(var(--accent-purple));
+	--color-accent-purple-dark: hsl(var(--accent-purple-dark));
+
+	--color-accent-pink-light: hsl(var(--accent-pink-light));
 	--color-accent-pink: hsl(var(--accent-pink));
+	--color-accent-pink-dark: hsl(var(--accent-pink-dark));
+
+	--color-accent-blue-light: hsl(var(--accent-blue-light));
 	--color-accent-blue: hsl(var(--accent-blue));
+	--color-accent-blue-dark: hsl(var(--accent-blue-dark));
+
 	--color-accent-teal: hsl(var(--accent-teal));
 	--color-accent-orange: hsl(var(--accent-orange));
 	--color-accent-yellow: hsl(var(--accent-yellow));
 
-	--color-silver: hsl(var(--silver));
-	--color-silver-dark: hsl(var(--silver-dark));
-	--color-chrome: hsl(var(--chrome));
-	--color-text-3: hsl(var(--text-3));
+	--color-neutral-light: hsl(var(--neutral-light));
+	--color-neutral: hsl(var(--neutral));
+	--color-neutral-dark: hsl(var(--neutral-dark));
 
 	--color-gradient-start: hsl(var(--gradient-start));
 	--color-gradient-mid: hsl(var(--gradient-mid));
@@ -59,106 +67,116 @@
 }
 
 :root {
-	/* Vibrant Color System */
-	--background: 60 30% 96%; /* Warmer off-white */
-	--foreground: 240 10% 12%; /* Deep slate */
+	/* Premium Luxury System — Midnight Indigo & Gold */
+	--background: 260 30% 98%; /* Soft silk white */
+	--foreground: 262 40% 10%; /* Deep midnight charcoal */
 
-	/* Vibrant accent colors */
-	--accent-purple: 260 84% 65%;
-	--accent-pink: 340 82% 65%;
-	--accent-blue: 200 90% 55%;
+	/* Accent: Royal Indigo — primary brand color */
+	--accent-purple-light: 262 70% 85%;
+	--accent-purple: 262 70% 50%;
+	--accent-purple-dark: 262 70% 30%;
+
+	/* Accent: Premium Gold — replacing steel */
+	--accent-pink-light: 45 93% 85%;
+	--accent-pink: 45 93% 55%;
+	--accent-pink-dark: 45 93% 35%;
+
+	/* Accent: Electric Blue — for tech highlights */
+	--accent-blue-light: 195 90% 85%;
+	--accent-blue: 195 90% 55%;
+	--accent-blue-dark: 195 90% 35%;
+
+	/* Supporting accents */
 	--accent-teal: 170 80% 45%;
-	--accent-orange: 25 95% 60%;
-	--accent-yellow: 48 96% 58%;
+	--accent-orange: 25 95% 55%;
+	--accent-yellow: 48 95% 60%;
 
-	/* Professional Metal Accents used in components */
-	--silver: 240 5% 45%;
-	--silver-dark: 240 5% 15%;
-	--chrome: 240 4% 80%;
-	--text-3: 240 4% 45%;
+	/* Neutral Tones — warm luxury leaning */
+	--neutral-light: 260 10% 90%;
+	--neutral: 262 10% 50%;
+	--neutral-dark: 262 15% 15%;
 
-	--card: 0 0% 100%;
-	--card-foreground: 240 10% 12%;
+	--card: 260 30% 100%;
+	--card-foreground: 262 40% 10%;
 
-	--primary: 260 84% 65%; /* Vibrant purple */
+	--primary: 262 70% 50%; /* Royal Indigo */
 	--primary-foreground: 0 0% 100%;
 
-	--secondary: 200 90% 55%; /* Vibrant blue */
-	--secondary-foreground: 0 0% 100%;
+	--secondary: 260 20% 95%; /* Champagne / Lavender tint */
+	--secondary-foreground: 262 40% 10%;
 
-	--muted: 60 15% 92%;
-	--muted-foreground: 240 5% 45%;
+	--muted: 260 20% 94%;
+	--muted-foreground: 262 10% 45%;
 
-	--accent: 340 82% 65%; /* Vibrant pink */
+	--accent: 45 93% 55%; /* Gold */
 	--accent-foreground: 0 0% 100%;
 
-	--destructive: 0 84% 60%;
+	--destructive: 0 72% 55%;
 	--destructive-foreground: 0 0% 100%;
 
-	--border: 240 6% 90%;
-	--input: 240 6% 90%;
-	--ring: 260 84% 65%;
+	--border: 262 20% 90%;
+	--input: 262 20% 90%;
+	--ring: 262 70% 50%;
 
-	--radius: 0.75rem; /* Increased rounding */
+	--radius: 0.75rem;
 
-	/* Gradient colors */
-	--gradient-start: 260 84% 65%;
-	--gradient-mid: 340 82% 65%;
-	--gradient-end: 200 90% 55%;
+	/* Gradient: Indigo → Amethyst → Gold */
+	--gradient-start: 262 70% 50%;
+	--gradient-mid: 280 60% 55%;
+	--gradient-end: 45 93% 55%;
 
 	/* Sidebar */
-	--sidebar: 60 30% 96%;
-	--sidebar-foreground: 240 10% 12%;
-	--sidebar-primary: 260 84% 65%;
+	--sidebar: 260 30% 98%;
+	--sidebar-foreground: 262 40% 10%;
+	--sidebar-primary: 262 70% 50%;
 	--sidebar-primary-foreground: 0 0% 100%;
-	--sidebar-accent: 340 82% 65%;
+	--sidebar-accent: 45 93% 55%;
 	--sidebar-accent-foreground: 0 0% 100%;
-	--sidebar-border: 240 6% 90%;
-	--sidebar-ring: 260 84% 65%;
+	--sidebar-border: 262 20% 90%;
+	--sidebar-ring: 262 70% 50%;
 }
 
 .dark {
-	--background: 240 10% 8%; /* Deep dark */
-	--foreground: 60 30% 96%; /* Light warm */
+	--background: 265 40% 5%; /* Deep midnight purple */
+	--foreground: 210 20% 94%; /* Ice white */
 
-	--card: 240 10% 12%;
-	--card-foreground: 60 30% 96%;
+	--card: 265 40% 8%;
+	--card-foreground: 210 20% 94%;
 
-	--primary: 260 84% 65%;
-	--primary-foreground: 0 0% 100%;
+	--primary: 262 80% 65%;
+	--primary-foreground: 218 22% 8%;
 
-	--secondary: 200 90% 55%;
-	--secondary-foreground: 0 0% 100%;
+	--secondary: 265 30% 12%;
+	--secondary-foreground: 210 20% 94%;
 
-	--muted: 240 8% 18%;
-	--muted-foreground: 240 5% 65%;
+	--muted: 265 30% 15%;
+	--muted-foreground: 262 20% 65%;
 
-	--accent: 340 82% 65%;
-	--accent-foreground: 0 0% 100%;
+	--accent: 45 90% 60%;
+	--accent-foreground: 218 22% 8%;
 
-	--silver: 240 5% 75%;
-	--silver-dark: 240 5% 85%;
-	--chrome: 240 4% 95%;
-	--text-3: 240 5% 70%;
+	--neutral-light: 262 20% 92%;
+	--neutral: 262 20% 68%;
+	--neutral-dark: 262 20% 82%;
 
-	--border: 240 8% 18%;
-	--input: 240 8% 18%;
-	--ring: 260 84% 65%;
+	--border: 265 30% 15%;
+	--input: 265 30% 15%;
+	--ring: 262 80% 65%;
 
-	/* Gradient colors */
-	--gradient-start: 260 84% 65%;
-	--gradient-mid: 340 82% 65%;
-	--gradient-end: 200 90% 55%;
+	/* Gradient: Indigo → Amethyst → Gold (Luminous) */
+	--gradient-start: 262 80% 65%;
+	--gradient-mid: 280 70% 70%;
+	--gradient-end: 45 90% 65%;
 
 	/* Sidebar Dark */
-	--sidebar: 240 10% 8%;
-	--sidebar-foreground: 60 30% 96%;
-	--sidebar-primary: 260 84% 65%;
-	--sidebar-primary-foreground: 0 0% 100%;
-	--sidebar-accent: 340 82% 65%;
-	--sidebar-accent-foreground: 0 0% 100%;
-	--sidebar-border: 240 8% 18%;
-	--sidebar-ring: 260 84% 65%;
+	--sidebar: 265 40% 5%;
+	--sidebar-foreground: 210 20% 94%;
+	--sidebar-primary: 262 80% 65%;
+	--sidebar-primary-foreground: 218 22% 8%;
+	--sidebar-accent: 45 90% 60%;
+	--sidebar-accent-foreground: 218 22% 8%;
+	--sidebar-border: 265 30% 15%;
+	--sidebar-ring: 262 80% 65%;
 }
 
 @layer base {
@@ -168,30 +186,25 @@
 
 	html {
 		@apply scroll-smooth;
-		/* Prevent layout shifts during hydration */
 		overflow-x: hidden;
 	}
 
 	body {
 		@apply bg-background text-foreground antialiased;
 		font-feature-settings: 'ss01', 'ss02', 'cv01', 'calt';
-		/* Prevent hydration mismatch from browser extensions */
 		overflow-x: hidden;
 	}
 
-	/* Improved focus styles with rounding */
 	:focus-visible {
 		@apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
 		border-radius: calc(var(--radius) * 0.75);
 	}
 
-	/* Selection with vibrant color */
 	::selection {
-		background: hsla(260, 84%, 65%, 0.3);
+		background: hsla(215, 40%, 48%, 0.25);
 		color: hsl(var(--foreground));
 	}
 
-	/* Improved link styles with gradient */
 	a:not([class]) {
 		@apply relative inline-block;
 		background: linear-gradient(
@@ -227,7 +240,7 @@
 		@apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
 	}
 
-	/* Vibrant gradient text */
+	/* Gradient text — slate to ice */
 	.gradient-text {
 		background: linear-gradient(
 			135deg,
@@ -242,7 +255,7 @@
 		animation: gradient-shift 5s ease infinite;
 	}
 
-	/* Modern card with rounded corners and gradient border */
+	/* Modern card */
 	.modern-card {
 		background: hsl(var(--card));
 		border-radius: var(--radius-lg);
@@ -273,7 +286,7 @@
 
 	.modern-card:hover {
 		transform: translateY(-4px);
-		box-shadow: 0 20px 40px -12px hsla(0, 0%, 0%, 0.15);
+		box-shadow: 0 20px 40px -12px hsla(215, 25%, 10%, 0.12);
 	}
 
 	.modern-card:hover::before {
@@ -282,23 +295,23 @@
 
 	/* Glass morphism card */
 	.glass-card {
-		background: rgba(255, 255, 255, 0.08);
+		background: rgba(210, 220, 235, 0.08);
 		backdrop-filter: blur(10px);
 		border-radius: var(--radius-lg);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(210, 220, 235, 0.15);
 		transition: all 0.3s ease;
 	}
 
 	.dark .glass-card {
-		background: rgba(0, 0, 0, 0.2);
+		background: rgba(10, 15, 25, 0.3);
 	}
 
 	.glass-card:hover {
-		background: rgba(255, 255, 255, 0.12);
+		background: rgba(210, 220, 235, 0.13);
 		transform: translateY(-2px);
 	}
 
-	/* Gradient button - primary */
+	/* Gradient button — primary */
 	.btn-gradient {
 		@apply inline-flex items-center gap-2 px-8 py-3 text-sm font-semibold tracking-wide transition-all duration-300;
 		font-family: var(--font-heading);
@@ -314,7 +327,7 @@
 		border-radius: calc(var(--radius) * 1.5);
 		position: relative;
 		overflow: hidden;
-		box-shadow: 0 4px 15px hsla(260, 84%, 65%, 0.3);
+		box-shadow: 0 4px 15px hsla(215, 40%, 48%, 0.25);
 	}
 
 	.btn-gradient::before {
@@ -327,7 +340,7 @@
 		background: linear-gradient(
 			90deg,
 			transparent,
-			rgba(255, 255, 255, 0.2),
+			rgba(255, 255, 255, 0.18),
 			transparent
 		);
 		transition: left 0.5s;
@@ -339,7 +352,7 @@
 
 	.btn-gradient:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 6px 20px hsla(260, 84%, 65%, 0.4);
+		box-shadow: 0 6px 20px hsla(215, 40%, 48%, 0.35);
 	}
 
 	/* Outline button with gradient border */
@@ -382,7 +395,7 @@
 		opacity: 0.8;
 	}
 
-	/* Modern chip/pill component */
+	/* Chip / pill */
 	.chip {
 		@apply inline-flex items-center gap-2 px-4 py-1.5 text-sm font-medium transition-all duration-200;
 		border-radius: 9999px;
@@ -393,13 +406,13 @@
 	.chip-gradient {
 		background: linear-gradient(
 			135deg,
-			hsla(var(--gradient-start), 0.1),
-			hsla(var(--gradient-mid), 0.1)
+			hsla(var(--gradient-start), 0.08),
+			hsla(var(--gradient-mid), 0.08)
 		);
-		border: 1px solid hsla(var(--gradient-start), 0.2);
+		border: 1px solid hsla(var(--gradient-start), 0.18);
 	}
 
-	/* Section label with gradient accent */
+	/* Section eyebrow label */
 	.section-eyebrow {
 		@apply text-[0.65rem] font-semibold uppercase tracking-[0.2em] inline-flex items-center gap-2;
 		background: linear-gradient(
@@ -424,20 +437,18 @@
 		border-radius: 2px;
 	}
 
-	/* CSS-only fade-up animation (hydration-safe) */
+	/* CSS-only animations */
 	.fade-up {
 		opacity: 0;
 		transform: translateY(30px);
 		animation: fade-up 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
 	}
 
-	/* CSS-only fade-in animation (hydration-safe) */
 	.fade-in {
 		opacity: 0;
 		animation: fade-in 0.5s ease-out forwards;
 	}
 
-	/* CSS-only slide animations (hydration-safe) */
 	.slide-left {
 		opacity: 0;
 		transform: translateX(-24px);
@@ -456,14 +467,13 @@
 		animation: slide-up 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
 	}
 
-	/* Scale animation */
 	.scale-up {
 		opacity: 0;
 		transform: scale(0.95);
 		animation: scale-up 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
 	}
 
-	/* Stagger children animations */
+	/* Stagger children */
 	.stagger-children > * {
 		opacity: 0;
 	}
@@ -487,7 +497,7 @@
 		animation: fade-up 0.5s ease-out 0.6s forwards;
 	}
 
-	/* Loading spinner with gradient */
+	/* Spinner */
 	.spinner-gradient {
 		@apply w-8 h-8 rounded-full animate-spin;
 		background: conic-gradient(
@@ -507,7 +517,6 @@
 }
 
 @layer utilities {
-	/* Keyframes - Vibrant animations */
 	@keyframes gradient-shift {
 		0%,
 		100% {
@@ -601,7 +610,7 @@
 		50% {
 			opacity: 0.8;
 			transform: scale(1.05);
-			box-shadow: 0 0 20px hsla(260, 84%, 65%, 0.5);
+			box-shadow: 0 0 20px hsla(215, 40%, 48%, 0.4);
 		}
 	}
 
@@ -669,7 +678,6 @@
 		animation: blink 1s infinite;
 	}
 
-	/* Animation play states */
 	.animation-paused {
 		animation-play-state: paused;
 	}
@@ -713,12 +721,12 @@
 		animation-delay: 1000ms;
 	}
 
-	/* Shimmer effect */
+	/* Shimmer */
 	.shimmer {
 		background: linear-gradient(
 			90deg,
 			transparent,
-			rgba(255, 255, 255, 0.15),
+			rgba(200, 215, 230, 0.18),
 			transparent
 		);
 		background-size: 1000px 100%;
@@ -747,14 +755,13 @@
 	/* Blur background */
 	.blur-bg {
 		backdrop-filter: blur(12px);
-		background: rgba(255, 255, 255, 0.05);
+		background: rgba(210, 220, 235, 0.06);
 	}
 
 	.dark .blur-bg {
-		background: rgba(0, 0, 0, 0.3);
+		background: rgba(5, 10, 20, 0.35);
 	}
 
-	/* Reduce motion safe class */
 	.reduce-motion {
 		@media (prefers-reduced-motion: reduce) {
 			animation: none !important;
@@ -764,7 +771,7 @@
 	}
 }
 
-/* Custom Scrollbar with gradient */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
 	width: 8px;
 	height: 8px;
@@ -793,16 +800,12 @@
 	);
 }
 
-/* Selection with gradient */
 ::selection {
-	background: linear-gradient(
-		135deg,
-		hsla(260, 84%, 65%, 0.3),
-		hsla(340, 82%, 65%, 0.3)
-	);
+	background: hsla(215, 40%, 48%, 0.2);
+	color: hsl(var(--foreground));
 }
 
-/* Reduced motion preference */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
@@ -851,12 +854,12 @@
 	}
 }
 
-/* Loading skeleton with gradient */
+/* Loading skeleton */
 .loading-skeleton {
 	background: linear-gradient(
 		90deg,
 		hsl(var(--muted)) 25%,
-		hsl(var(--accent) / 0.3) 50%,
+		hsl(var(--accent) / 0.2) 50%,
 		hsl(var(--muted)) 75%
 	);
 	background-size: 200% 100%;
@@ -864,25 +867,22 @@
 	border-radius: var(--radius-md);
 }
 
-/* Focus visible for better accessibility */
+/* Focus visible */
 :focus-visible {
 	outline: none;
-	box-shadow: 0 0 0 3px hsla(260, 84%, 65%, 0.4);
+	box-shadow: 0 0 0 3px hsla(215, 40%, 48%, 0.35);
 	border-radius: calc(var(--radius) * 0.75);
 }
 
-/* Disable outline for mouse users while keeping keyboard accessibility */
 :focus:not(:focus-visible) {
 	outline: none;
 }
 
-/* Hydration-safe visibility classes */
+/* Hydration helpers */
 .hydration-safe {
-	/* Ensures consistent rendering between server and client */
 	contain: layout style paint;
 }
 
-/* Prevent layout shift during hydration */
 .hydration-fixed {
 	will-change: transform, opacity;
 	backface-visibility: hidden;

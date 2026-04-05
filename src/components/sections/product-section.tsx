@@ -139,8 +139,8 @@ export function ProductsSection() {
 			<motion.div
 				className='absolute inset-0 overflow-hidden pointer-events-none'
 				style={{ y: backgroundY }}>
-				<div className='absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-gradient-to-b from-silver/5 to-transparent blur-3xl' />
-				<div className='absolute bottom-20 right-10 w-72 h-72 rounded-full bg-gradient-to-l from-silver/4 to-transparent blur-3xl' />
+				<div className='absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-gradient-to-b from-neutral/5 to-transparent blur-3xl' />
+				<div className='absolute bottom-20 right-10 w-72 h-72 rounded-full bg-gradient-to-l from-neutral/4 to-transparent blur-3xl' />
 				{/* Dot grid pattern */}
 				<div
 					className='absolute inset-0 opacity-[0.025]'
@@ -163,10 +163,10 @@ export function ProductsSection() {
 							initial={{ opacity: 0, x: -20 }}
 							animate={isInView ? { opacity: 1, x: 0 } : {}}
 							transition={{ delay: 0.2 }}
-							className='inline-flex items-center gap-2 px-3 py-1 mb-4 border border-silver/20 bg-silver/5'>
+							className='inline-flex items-center gap-2 px-3 py-1 mb-4 border border-neutral/20 bg-neutral/5'>
 							<Sparkles
 								size={12}
-								style={{ color: 'hsl(var(--silver))' }}
+								style={{ color: 'hsl(var(--neutral))' }}
 							/>
 							<span className='section-eyebrow text-xs tracking-[0.2em] uppercase'>
 								Our Products
@@ -178,14 +178,14 @@ export function ProductsSection() {
 							style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
 							Built for{' '}
 							<span className='relative inline-block'>
-								<span className='bg-gradient-to-r from-silver via-silver-dark to-chrome bg-clip-text text-transparent'>
+								<span className='bg-gradient-to-r from-neutral via-neutral-dark to-neutral-light bg-clip-text text-transparent'>
 									Real Business
 								</span>
 								<motion.span
 									initial={{ width: 0 }}
 									animate={isInView ? { width: '100%' } : {}}
 									transition={{ delay: 0.6, duration: 0.8 }}
-									className='absolute bottom-0 left-0 h-px bg-gradient-to-r from-silver to-transparent'
+									className='absolute bottom-0 left-0 h-px bg-gradient-to-r from-neutral to-transparent'
 								/>
 							</span>
 						</h2>
@@ -196,7 +196,7 @@ export function ProductsSection() {
 						animate={isInView ? { opacity: 1, x: 0 } : {}}
 						transition={{ delay: 0.3, duration: 0.5 }}
 						className='text-sm leading-relaxed font-light max-w-xs'
-						style={{ color: 'hsl(var(--text-3))' }}>
+						style={{ color: 'hsl(var(--neutral))' }}>
 						Purpose-built software products that solve everyday operational
 						challenges — ready to use, easy to adopt.
 					</motion.p>
@@ -280,7 +280,7 @@ export function ProductsSection() {
 											borderColor:
 												isHovered ? product.color : 'hsl(var(--border))',
 											color:
-												isHovered ? product.color : 'hsl(var(--silver-dark))',
+												isHovered ? product.color : 'hsl(var(--neutral-dark))',
 											background:
 												isHovered ? product.accentLight : 'transparent',
 										}}>
@@ -299,14 +299,14 @@ export function ProductsSection() {
 										className='text-xs font-medium tracking-widest uppercase mb-2 transition-colors duration-300'
 										style={{
 											color:
-												isHovered ? product.color : 'hsl(var(--silver-dark))',
+												isHovered ? product.color : 'hsl(var(--neutral-dark))',
 										}}>
 										{product.tagline}
 									</motion.p>
 
 									{/* Title */}
 									<h3
-										className='font-heading font-bold text-lg mb-3 tracking-tight transition-colors duration-300 group-hover:text-silver'
+										className='font-heading font-bold text-lg mb-3 tracking-tight transition-colors duration-300 group-hover:text-neutral'
 										style={{ color: 'hsl(var(--foreground))' }}>
 										{product.title}
 									</h3>
@@ -314,7 +314,7 @@ export function ProductsSection() {
 									{/* Description */}
 									<p
 										className='text-sm leading-relaxed font-light mb-5'
-										style={{ color: 'hsl(var(--text-3))' }}>
+										style={{ color: 'hsl(var(--neutral))' }}>
 										{product.description}
 									</p>
 
@@ -335,7 +335,7 @@ export function ProductsSection() {
 													borderColor:
 														isHovered ? product.color : 'hsl(var(--border))',
 													color:
-														isHovered ? product.color : 'hsl(var(--silver))',
+														isHovered ? product.color : 'hsl(var(--neutral))',
 													background:
 														isHovered ?
 															product.accentLight
@@ -404,7 +404,7 @@ export function ProductsSection() {
 						</p>
 						<p
 							className='text-xs'
-							style={{ color: 'hsl(var(--text-3))' }}>
+							style={{ color: 'hsl(var(--neutral))' }}>
 							We build custom software tailored exactly to your workflow.
 						</p>
 					</div>
@@ -414,7 +414,7 @@ export function ProductsSection() {
 						variant='outline'
 						whileHover={{ scale: 1.04 }}
 						whileTap={{ scale: 0.96 }}
-						className='shrink-0 px-6 py-2 text-xs uppercase tracking-widest border-silver/20 hover:border-silver bg-transparent'>
+						className='shrink-0 px-6 py-2 text-xs uppercase tracking-widest border-neutral/20 hover:border-neutral bg-transparent'>
 						<Link href='#contact'>Request a Custom Build →</Link>
 					</MotionButton>
 				</motion.div>
