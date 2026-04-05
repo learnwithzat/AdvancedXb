@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { HeroSection } from '@/components/sections/hero-section';
 import { StatsSection } from '@/components/sections/stats-section';
 import { ServicesSection } from '@/components/sections/services-section';
+import { ProductsSection } from '@/components/sections/product-section';
 import { AboutSection } from '@/components/sections/about-section';
 import { TestimonialsSection } from '@/components/sections/testimonials-section';
 import { CTASection } from '@/components/sections/cta-section';
@@ -93,7 +94,11 @@ export default function Home() {
 					<div className='relative'>
 						<StatsSection />
 					</div>
-
+					<div className='relative'>
+						<div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-silver/20 to-transparent' />
+						<ProductsSection />
+						<div className='absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-silver/20 to-transparent' />
+					</div>
 					{/* Section Divider with gradient */}
 					<div className='relative'>
 						<div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-silver/20 to-transparent' />

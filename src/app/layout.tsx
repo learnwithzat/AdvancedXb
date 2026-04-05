@@ -6,6 +6,7 @@ import { Poppins } from 'next/font/google';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { Suspense } from 'react';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const poppins = Poppins({
 	subsets: ['latin'],
@@ -124,31 +125,32 @@ export default function RootLayout({
 			suppressHydrationWarning>
 			<body
 				className={`${poppins.className} min-h-screen flex flex-col bg-background text-foreground antialiased`}>
-				{/* Skip to content link for accessibility */}
-				<a
-					href='#main-content'
-					className='sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-silver'>
-					Skip to main content
-				</a>
+				<ThemeProvider
+					attribute='class'
+					defaultTheme='system'
+					enableSystem
+					disableTransitionOnChange>
+					{/* Skip to content link for accessibility */}
+					<a
+						href='#main-content'
+						className='sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary'>
+						Skip to main content
+					</a>
 
-				{/* Navbar with suspense for better performance */}
-				<Suspense fallback={<div className='h-16 bg-background' />}>
-					<Navbar />
-				</Suspense>
+					<Suspense fallback={<div className='h-16 bg-background' />}>
+						<Navbar />
+					</Suspense>
 
-				{/* Main content with ID for skip link */}
-				<main
-					id='main-content'
-					className='flex-1'>
-					<Suspense fallback={<LoadingFallback />}>{children}</Suspense>
-				</main>
+					<main
+						id='main-content'
+						className='flex-1'>
+						<Suspense fallback={<LoadingFallback />}>{children}</Suspense>
+					</main>
 
-				<Suspense fallback={<div className='h-64 bg-background' />}>
-					<Footer />
-				</Suspense>
-
-				{/* Optional: Cookie consent banner placeholder */}
-				{/* <CookieConsent /> */}
+					<Suspense fallback={<div className='h-64 bg-background' />}>
+						<Footer />
+					</Suspense>
+				</ThemeProvider>
 			</body>
 		</html>
 	);

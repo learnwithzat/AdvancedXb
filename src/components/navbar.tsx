@@ -7,11 +7,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { cn } from '@/lib/utils';
 import { MotionButton } from '@/components/ui/motion-button';
 
 const navItems = [
 	{ name: 'Home', href: '#home' },
+	{ name: 'Products', href: '#products' },
 	{ name: 'Services', href: '#services' },
 	{ name: 'About', href: '#about' },
 	{ name: 'Contact', href: '#contact' },
@@ -55,15 +57,7 @@ export function Navbar() {
 						<Link
 							key={item.name}
 							href={item.href}
-							className='text-sm tracking-wide transition-colors'
-							style={{ color: 'hsl(var(--text-3))' }}
-							onMouseEnter={(e) =>
-								((e.target as HTMLElement).style.color =
-									'hsl(var(--foreground))')
-							}
-							onMouseLeave={(e) =>
-								((e.target as HTMLElement).style.color = 'hsl(var(--text-3))')
-							}>
+							className='text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors'>
 							{item.name}
 						</Link>
 					))}
@@ -71,6 +65,7 @@ export function Navbar() {
 
 				{/* CTA */}
 				<div className='hidden md:flex items-center gap-3'>
+					<ThemeToggle />
 					<MotionButton
 						asChild
 						variant='default'

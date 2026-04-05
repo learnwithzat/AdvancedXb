@@ -14,85 +14,54 @@ import {
 import Link from 'next/link';
 import { MotionButton } from '@/components/ui/motion-button';
 import {
-	Code2,
-	Database,
-	Smartphone,
-	Cloud,
-	Shield,
+	Calculator,
+	FileSpreadsheet,
+	Sheet,
 	Zap,
 	ArrowRight,
 	Sparkles,
 	CheckCircle,
 	TrendingUp,
+	Users,
 } from 'lucide-react';
 
 const SERVICES = [
 	{
 		num: '01',
-		icon: Code2,
-		title: 'Web Development',
+		icon: Calculator,
+		title: 'Accounting Services',
 		description:
-			'Modern, scalable web apps built with Next.js, React, and cutting-edge technologies for peak performance.',
-		tags: ['Responsive', 'SEO', 'Performance'],
-		color: '#4ecdc4',
-		gradient: 'from-cyan-500/20 to-blue-500/20',
+			'Full-cycle accounting, bookkeeping, financial reporting, and tax preparation to keep your business financially healthy and compliant.',
+		tags: ['Bookkeeping', 'Tax Prep', 'Reporting'],
+		color: '#634ecd',
+		gradient: 'from-violet-500/20 to-purple-500/20',
 	},
 	{
 		num: '02',
-		icon: Database,
-		title: 'POS & ERP Systems',
+		icon: FileSpreadsheet,
+		title: 'Excel Works',
 		description:
-			'Custom business software with real-time analytics, inventory control, and complete operational oversight.',
-		tags: ['Inventory', 'Analytics', 'Reporting'],
-		color: '#ff6b6b',
-		gradient: 'from-red-500/20 to-orange-500/20',
-	},
-	{
-		num: '03',
-		icon: Smartphone,
-		title: 'Mobile Apps',
-		description:
-			'Cross-platform mobile applications with native performance, offline-first architecture, and push notifications.',
-		tags: ['iOS', 'Android', 'PWA'],
-		color: '#45b7d1',
-		gradient: 'from-blue-500/20 to-indigo-500/20',
-	},
-	{
-		num: '04',
-		icon: Cloud,
-		title: 'Cloud Solutions',
-		description:
-			'Scalable cloud infrastructure, CI/CD pipelines, and deployment strategies for modern applications.',
-		tags: ['AWS', 'Azure', '99.9% Uptime'],
-		color: '#96ceb4',
+			'Custom Excel solutions including advanced formulas, macros, VBA automation, dashboards, and data modeling tailored to your workflow.',
+		tags: ['VBA', 'Dashboards', 'Automation'],
+		color: '#1d6f42',
 		gradient: 'from-green-500/20 to-emerald-500/20',
 	},
 	{
-		num: '05',
-		icon: Shield,
-		title: 'Security & Compliance',
+		num: '03',
+		icon: Sheet,
+		title: 'Google Sheets Works',
 		description:
-			'Enterprise-grade security, data encryption, and compliance with GDPR and industry standards.',
-		tags: ['Encryption', 'GDPR', 'Audits'],
-		color: '#f4d03f',
-		gradient: 'from-yellow-500/20 to-amber-500/20',
-	},
-	{
-		num: '06',
-		icon: Zap,
-		title: 'SaaS Products',
-		description:
-			'End-to-end SaaS development from concept to deployment with subscriptions and analytics built in.',
-		tags: ['Subscriptions', 'API', 'Dashboards'],
-		color: '#e74c3c',
-		gradient: 'from-purple-500/20 to-pink-500/20',
+			'Powerful Google Sheets buildouts with Apps Script automation, live data integrations, and collaborative workflows for your team.',
+		tags: ['Apps Script', 'Integration', 'Collaboration'],
+		color: '#0f9d58',
+		gradient: 'from-teal-500/20 to-cyan-500/20',
 	},
 ];
 
 const STATS = [
-	{ value: '150+', label: 'Projects Delivered', icon: Code2 },
+	{ value: '150+', label: 'Projects Delivered', icon: FileSpreadsheet },
 	{ value: '50+', label: 'Happy Clients', icon: CheckCircle },
-	{ value: '99.9%', label: 'Uptime Guarantee', icon: TrendingUp },
+	{ value: '99.9%', label: 'Accuracy Guarantee', icon: TrendingUp },
 ];
 
 export function ServicesSection() {
@@ -137,11 +106,8 @@ export function ServicesSection() {
 			<motion.div
 				className='absolute inset-0 overflow-hidden pointer-events-none'
 				style={{ y: backgroundY }}>
-				{/* Gradient Orbs */}
 				<div className='absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-r from-silver/5 to-transparent blur-3xl' />
 				<div className='absolute bottom-20 left-20 w-80 h-80 rounded-full bg-gradient-to-l from-silver/5 to-transparent blur-3xl' />
-
-				{/* Diagonal Lines Pattern */}
 				<div
 					className='absolute inset-0 opacity-[0.02]'
 					style={{
@@ -151,14 +117,13 @@ export function ServicesSection() {
 			</motion.div>
 
 			<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10'>
-				{/* Header with enhanced animations */}
+				{/* Header */}
 				<motion.div
 					initial={{ opacity: 0, y: 30 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 0.6 }}
 					className='flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16'>
 					<div className='relative'>
-						{/* Badge */}
 						<motion.div
 							initial={{ opacity: 0, x: -20 }}
 							animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -197,16 +162,17 @@ export function ServicesSection() {
 						transition={{ delay: 0.3, duration: 0.5 }}
 						className='text-sm leading-relaxed font-light max-w-xs'
 						style={{ color: 'hsl(var(--text-3))' }}>
-						Comprehensive software solutions tailored to your business needs
+						Comprehensive financial and spreadsheet solutions tailored to your
+						business needs
 					</motion.p>
 				</motion.div>
 
-				{/* Services Grid with enhanced cards */}
+				{/* Services Grid */}
 				<motion.div
 					variants={containerVariants}
 					initial='hidden'
 					animate={isInView ? 'visible' : 'hidden'}
-					className='grid md:grid-cols-2 lg:grid-cols-3 gap-px'
+					className='grid md:grid-cols-3 gap-px'
 					style={{ background: 'hsl(var(--border))' }}>
 					{SERVICES.map((svc, i) => {
 						const Icon = svc.icon;
@@ -221,19 +187,20 @@ export function ServicesSection() {
 								onHoverEnd={() => setHoveredIndex(null)}
 								className='group relative overflow-hidden'
 								style={{ background: 'hsl(var(--secondary))' }}>
-								{/* Animated Background Gradient */}
+								{/* Hover Background Gradient */}
 								<motion.div
-									className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500'
+									className='absolute inset-0'
 									style={{
 										background: `linear-gradient(135deg, ${svc.color}10, transparent)`,
 									}}
 									initial={false}
 									animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
+									transition={{ duration: 0.5 }}
 								/>
 
 								{/* Card Content */}
 								<div className='relative p-8 cursor-pointer transition-all duration-500 group-hover:translate-y-[-4px]'>
-									{/* Number with animated line */}
+									{/* Number */}
 									<div className='flex justify-between items-start mb-6'>
 										<motion.div
 											className='font-heading font-bold text-sm tracking-widest'
@@ -248,11 +215,11 @@ export function ServicesSection() {
 										/>
 									</div>
 
-									{/* Icon with animation */}
+									{/* Icon */}
 									<motion.div
 										whileHover={{ rotate: 5, scale: 1.05 }}
 										transition={{ type: 'spring', stiffness: 300 }}
-										className='relative w-12 h-12 flex items-center justify-center mb-6 border-2 transition-all duration-300 group-hover:border-silver group-hover:scale-110'
+										className='relative w-12 h-12 flex items-center justify-center mb-6 border-2 transition-all duration-300 group-hover:scale-110'
 										style={{
 											borderColor: isHovered ? svc.color : 'hsl(var(--border))',
 											color: isHovered ? svc.color : 'hsl(var(--silver-dark))',
@@ -262,8 +229,6 @@ export function ServicesSection() {
 											size={20}
 											strokeWidth={1.5}
 										/>
-
-										{/* Glow effect */}
 										<motion.div
 											className='absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500'
 											style={{ background: svc.color }}
@@ -284,7 +249,7 @@ export function ServicesSection() {
 										{svc.description}
 									</p>
 
-									{/* Tags with animations */}
+									{/* Tags */}
 									<div className='flex flex-wrap gap-2 mb-5'>
 										{svc.tags.map((t, idx) => (
 											<motion.span
@@ -309,7 +274,7 @@ export function ServicesSection() {
 										))}
 									</div>
 
-									{/* Learn More Link */}
+									{/* Learn More */}
 									<MotionButton
 										asChild
 										variant='link'
@@ -395,7 +360,7 @@ export function ServicesSection() {
 									Need a custom solution?
 								</div>
 								<div className='text-xs text-silver/60'>
-									We build exactly what you need
+									We tailor every deliverable to your exact needs
 								</div>
 							</div>
 						</div>

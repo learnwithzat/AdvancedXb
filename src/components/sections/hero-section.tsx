@@ -200,7 +200,7 @@ export function HeroSection() {
 									size={12}
 									style={{ color: 'hsl(var(--silver))' }}
 								/>
-								<span className='section-eyebrow text-xs tracking-[0.2em] uppercase'>
+								<span className='section-eyebrow'>
 									Trusted by 500+ businesses
 								</span>
 							</div>
@@ -209,9 +209,9 @@ export function HeroSection() {
 						{/* Main Heading with Animated Word */}
 						<h1
 							className='font-heading font-bold leading-[1.1] tracking-tighter mb-6'
-							style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)' }}>
+							style={{ fontSize: 'clamp(3rem, 7vw, 6rem)' }}>
 							<span className='block text-foreground mb-2'>Build</span>
-							<div className='relative h-[1.2em] mb-2 overflow-hidden'>
+							<div className='relative h-[1.1em] mb-2 overflow-hidden flex items-center'>
 								<AnimatePresence mode='wait'>
 									<motion.span
 										key={currentWordIndex}
@@ -219,14 +219,20 @@ export function HeroSection() {
 										animate={{ y: 0, opacity: 1 }}
 										exit={{ y: -50, opacity: 0 }}
 										transition={{ duration: 0.4, ease: 'easeInOut' }}
-										className='absolute left-2 inline-block bg-gradient-to-r from-grey via-grey-dark to-chrome bg-clip-text'
+										className='inline-block bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent'
 										style={{ fontSize: '1em' }}>
 										{ANIMATED_WORDS[currentWordIndex]}
 									</motion.span>
 								</AnimatePresence>
-								<span style={cursorStyle} />
+								<motion.span
+									animate={{ opacity: [1, 0] }}
+									transition={{ repeat: Infinity, duration: 0.8 }}
+									className='inline-block w-[4px] h-[0.8em] bg-primary ml-2'
+								/>
 							</div>
-							<span className='block stroke-text mt-2'>Software.</span>
+							<span className='block stroke-text mt-2 opacity-80'>
+								Software.
+							</span>
 						</h1>
 
 						{/* Description with fade-in */}

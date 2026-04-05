@@ -6,11 +6,27 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
+	--color-background: hsl(var(--background));
+	--color-foreground: hsl(var(--foreground));
 	--font-sans: var(--font-poppins);
 	--font-mono: var(--font-geist-mono);
 	--font-heading: var(--font-poppins);
+
+	--color-accent-purple: hsl(var(--accent-purple));
+	--color-accent-pink: hsl(var(--accent-pink));
+	--color-accent-blue: hsl(var(--accent-blue));
+	--color-accent-teal: hsl(var(--accent-teal));
+	--color-accent-orange: hsl(var(--accent-orange));
+	--color-accent-yellow: hsl(var(--accent-yellow));
+
+	--color-silver: hsl(var(--silver));
+	--color-silver-dark: hsl(var(--silver-dark));
+	--color-chrome: hsl(var(--chrome));
+	--color-text-3: hsl(var(--text-3));
+
+	--color-gradient-start: hsl(var(--gradient-start));
+	--color-gradient-mid: hsl(var(--gradient-mid));
+	--color-gradient-end: hsl(var(--gradient-end));
 
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);
@@ -54,6 +70,12 @@
 	--accent-teal: 170 80% 45%;
 	--accent-orange: 25 95% 60%;
 	--accent-yellow: 48 96% 58%;
+
+	/* Professional Metal Accents used in components */
+	--silver: 240 5% 45%;
+	--silver-dark: 240 5% 15%;
+	--chrome: 240 4% 80%;
+	--text-3: 240 4% 45%;
 
 	--card: 0 0% 100%;
 	--card-foreground: 240 10% 12%;
@@ -113,6 +135,11 @@
 
 	--accent: 340 82% 65%;
 	--accent-foreground: 0 0% 100%;
+
+	--silver: 240 5% 75%;
+	--silver-dark: 240 5% 85%;
+	--chrome: 240 4% 95%;
+	--text-3: 240 5% 70%;
 
 	--border: 240 8% 18%;
 	--input: 240 8% 18%;
@@ -184,6 +211,18 @@
 }
 
 @layer components {
+	.stroke-text {
+		-webkit-text-stroke: 1px hsl(var(--foreground));
+		color: transparent;
+	}
+
+	.grid-bg {
+		background-image:
+			linear-gradient(to right, hsl(var(--border) / 0.2) 1px, transparent 1px),
+			linear-gradient(to bottom, hsl(var(--border) / 0.2) 1px, transparent 1px);
+		background-size: 40px 40px;
+	}
+
 	.container-custom {
 		@apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
 	}
@@ -362,18 +401,14 @@
 
 	/* Section label with gradient accent */
 	.section-eyebrow {
-		@apply text-xs font-semibold uppercase tracking-widest;
+		@apply text-[0.65rem] font-semibold uppercase tracking-[0.2em] inline-flex items-center gap-2;
 		background: linear-gradient(
 			135deg,
-			hsl(var(--gradient-start)),
-			hsl(var(--gradient-mid))
+			var(--color-gradient-start),
+			var(--color-gradient-mid)
 		);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		display: inline-flex;
-		align-items: center;
-		gap: 0.6rem;
 	}
 
 	.section-eyebrow::after {
