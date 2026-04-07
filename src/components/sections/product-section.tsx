@@ -26,42 +26,42 @@ import {
 } from 'lucide-react';
 
 const PRODUCTS = [
-	{
-		num: '01',
-		icon: CalendarCheck,
-		title: 'Attendance Register',
-		slug: 'attendance-register',
-		tagline: 'Track. Monitor. Simplify.',
-		description:
-			'Effortlessly manage employee attendance with real-time tracking, automated reports, and seamless payroll integration.',
-		tags: ['Real-time', 'Reports', 'Payroll Sync'],
-		color: '#a78bfa', // soft violet — sits well on dark/light
-		accentLight: '#a78bfa14',
-	},
-	{
-		num: '02',
-		icon: Users,
-		title: 'HR',
-		slug: 'hr',
-		tagline: 'People. Process. Performance.',
-		description:
-			'A complete HR suite for managing employees, leaves, payroll, appraisals, and onboarding — all in one place.',
-		tags: ['Onboarding', 'Payroll', 'Leave Mgmt'],
-		color: '#f97316', // warm amber-orange
-		accentLight: '#f9731614',
-	},
-	{
-		num: '03',
-		icon: Handshake,
-		title: 'CRM',
-		slug: 'crm',
-		tagline: 'Connect. Convert. Retain.',
-		description:
-			'Manage your sales pipeline, customer interactions, and follow-ups with a CRM built for growing businesses.',
-		tags: ['Pipeline', 'Follow-ups', 'Analytics'],
-		color: '#38bdf8', // sky blue — clear and trustworthy
-		accentLight: '#38bdf814',
-	},
+	// {
+	// 	num: '01',
+	// 	icon: CalendarCheck,
+	// 	title: 'Attendance Register',
+	// 	slug: 'attendance-register',
+	// 	tagline: 'Track. Monitor. Simplify.',
+	// 	description:
+	// 		'Effortlessly manage employee attendance with real-time tracking, automated reports, and seamless payroll integration.',
+	// 	tags: ['Real-time', 'Reports', 'Payroll Sync'],
+	// 	color: '#a78bfa', // soft violet — sits well on dark/light
+	// 	accentLight: '#a78bfa14',
+	// },
+	// {
+	// 	num: '02',
+	// 	icon: Users,
+	// 	title: 'HR',
+	// 	slug: 'hr',
+	// 	tagline: 'People. Process. Performance.',
+	// 	description:
+	// 		'A complete HR suite for managing employees, leaves, payroll, appraisals, and onboarding — all in one place.',
+	// 	tags: ['Onboarding', 'Payroll', 'Leave Mgmt'],
+	// 	color: '#f97316', // warm amber-orange
+	// 	accentLight: '#f9731614',
+	// },
+	// {
+	// 	num: '03',
+	// 	icon: Handshake,
+	// 	title: 'CRM',
+	// 	slug: 'crm',
+	// 	tagline: 'Connect. Convert. Retain.',
+	// 	description:
+	// 		'Manage your sales pipeline, customer interactions, and follow-ups with a CRM built for growing businesses.',
+	// 	tags: ['Pipeline', 'Follow-ups', 'Analytics'],
+	// 	color: '#38bdf8', // sky blue — clear and trustworthy
+	// 	accentLight: '#38bdf814',
+	// },
 	{
 		num: '04',
 		icon: BookOpen,
@@ -74,30 +74,30 @@ const PRODUCTS = [
 		color: '#34d399', // emerald — money, growth
 		accentLight: '#34d39914',
 	},
-	{
-		num: '05',
-		icon: Receipt,
-		title: 'Billing App',
-		slug: 'billing-app',
-		tagline: 'Bill Fast. Get Paid Faster.',
-		description:
-			'Generate professional invoices, track payments, send reminders, and manage your billing cycle with zero friction.',
-		tags: ['Invoices', 'Reminders', 'Multi-currency'],
-		color: '#fbbf24', // gold — value, premium
-		accentLight: '#fbbf2414',
-	},
-	{
-		num: '06',
-		icon: PackageCheck,
-		title: 'Order Management',
-		slug: 'order-management',
-		tagline: 'Order In. Chaos Out.',
-		description:
-			'End-to-end order processing from placement to fulfillment — with inventory sync, status tracking, and customer notifications.',
-		tags: ['Fulfillment', 'Inventory', 'Notifications'],
-		color: '#fb7185', // rose — action, urgency
-		accentLight: '#fb718514',
-	},
+	// {
+	// 	num: '05',
+	// 	icon: Receipt,
+	// 	title: 'Billing App',
+	// 	slug: 'billing-app',
+	// 	tagline: 'Bill Fast. Get Paid Faster.',
+	// 	description:
+	// 		'Generate professional invoices, track payments, send reminders, and manage your billing cycle with zero friction.',
+	// 	tags: ['Invoices', 'Reminders', 'Multi-currency'],
+	// 	color: '#fbbf24', // gold — value, premium
+	// 	accentLight: '#fbbf2414',
+	// },
+	// {
+	// 	num: '06',
+	// 	icon: PackageCheck,
+	// 	title: 'Order Management',
+	// 	slug: 'order-management',
+	// 	tagline: 'Order In. Chaos Out.',
+	// 	description:
+	// 		'End-to-end order processing from placement to fulfillment — with inventory sync, status tracking, and customer notifications.',
+	// 	tags: ['Fulfillment', 'Inventory', 'Notifications'],
+	// 	color: '#fb7185', // rose — action, urgency
+	// 	accentLight: '#fb718514',
+	// },
 ];
 
 export function ProductsSection() {
