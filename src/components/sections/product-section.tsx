@@ -246,7 +246,8 @@ export function ProductsSection() {
 
 								{/* Card Content */}
 								<Link
-									href={`/products/${product.slug}`}
+									href='https://app.zatgo.online'
+									target='_blank' // optional (opens in new tab)
 									className='block relative p-8 h-full transition-all duration-500 group-hover:translate-y-[-3px]'>
 									{/* Number row */}
 									<div className='flex justify-between items-start mb-6'>
