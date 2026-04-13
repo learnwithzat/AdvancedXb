@@ -66,64 +66,71 @@
 	--radius-xl: calc(var(--radius) * 1.5);
 }
 :root {
-	/* New Theme — Dark Blue + Dark Green + White */
-	--background: 210 40% 98%; /* clean white */
-	--foreground: 210 40% 8%; /* near black */
+	/* 🔥 Force Dark Theme Globally */
+	--background: 0 0% 0%; /* pure black */
+	--foreground: 0 0% 100%; /* pure white */
 
-	/* Primary = Dark Blue */
-	--primary: 215 80% 45%;
-	--primary-foreground: 0 0% 100%;
+	/* Keep your luxury palette */
+	--accent-purple-light: 262 70% 85%;
+	--accent-purple: 262 70% 50%;
+	--accent-purple-dark: 262 70% 30%;
 
-	/* Secondary = Soft Green */
-	--secondary: 160 40% 92%;
-	--secondary-foreground: 210 40% 8%;
+	--accent-pink-light: 45 93% 85%;
+	--accent-pink: 45 93% 55%;
+	--accent-pink-dark: 45 93% 35%;
 
-	/* Accent = Dark Green */
-	--accent: 160 70% 35%;
-	--accent-foreground: 0 0% 100%;
+	--accent-blue-light: 195 90% 85%;
+	--accent-blue: 195 90% 55%;
+	--accent-blue-dark: 195 90% 35%;
 
-	/* Supporting colors */
-	--accent-blue-light: 210 80% 85%;
-	--accent-blue: 215 80% 45%;
-	--accent-blue-dark: 215 80% 25%;
-
-	--accent-teal: 160 60% 40%;
+	--accent-teal: 170 80% 45%;
 	--accent-orange: 25 95% 55%;
 	--accent-yellow: 48 95% 60%;
 
-	/* Neutral */
-	--neutral-light: 210 20% 92%;
-	--neutral: 210 15% 50%;
-	--neutral-dark: 210 20% 15%;
+	/* Neutral adjusted for dark */
+	--neutral-light: 0 0% 20%;
+	--neutral: 0 0% 40%;
+	--neutral-dark: 0 0% 80%;
 
-	/* UI */
-	--card: 0 0% 100%;
-	--card-foreground: 210 40% 8%;
+	/* Cards */
+	--card: 0 0% 5%;
+	--card-foreground: 0 0% 100%;
 
-	--muted: 210 20% 94%;
-	--muted-foreground: 210 15% 40%;
+	--primary: 262 70% 60%;
+	--primary-foreground: 0 0% 100%;
+
+	--secondary: 0 0% 10%;
+	--secondary-foreground: 0 0% 100%;
+
+	--muted: 0 0% 12%;
+	--muted-foreground: 0 0% 70%;
+
+	--accent: 45 93% 55%;
+	--accent-foreground: 0 0% 0%;
 
 	--destructive: 0 72% 55%;
 	--destructive-foreground: 0 0% 100%;
 
-	--border: 210 20% 88%;
-	--input: 210 20% 88%;
-	--ring: 215 80% 45%;
+	--border: 0 0% 15%;
+	--input: 0 0% 15%;
+	--ring: 262 80% 65%;
 
-	/* Gradient: Blue → Green */
-	--gradient-start: 215 80% 45%;
-	--gradient-mid: 200 70% 40%;
-	--gradient-end: 160 70% 35%;
+	--radius: 0.75rem;
+
+	/* Gradient stays same */
+	--gradient-start: 262 70% 50%;
+	--gradient-mid: 280 60% 55%;
+	--gradient-end: 45 93% 55%;
 
 	/* Sidebar */
-	--sidebar: 210 40% 98%;
-	--sidebar-foreground: 210 40% 8%;
-	--sidebar-primary: 215 80% 45%;
+	--sidebar: 0 0% 4%;
+	--sidebar-foreground: 0 0% 100%;
+	--sidebar-primary: 262 70% 60%;
 	--sidebar-primary-foreground: 0 0% 100%;
-	--sidebar-accent: 160 70% 35%;
-	--sidebar-accent-foreground: 0 0% 100%;
-	--sidebar-border: 210 20% 88%;
-	--sidebar-ring: 215 80% 45%;
+	--sidebar-accent: 45 93% 55%;
+	--sidebar-accent-foreground: 0 0% 0%;
+	--sidebar-border: 0 0% 15%;
+	--sidebar-ring: 262 80% 65%;
 }
 .dark {
 	--background: 215 50% 8%; /* deep dark blue */
@@ -173,9 +180,7 @@
 		@apply border-border;
 	}
 
-	html {
-		@apply scroll-smooth;
-		overflow-x: hidden;
+	<html class="dark">
 	}
 
 	body {
