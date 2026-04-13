@@ -211,7 +211,7 @@ export function HeroSection() {
 						<h1
 							className='font-heading font-bold leading-[1.1] tracking-tighter mb-6'
 							style={{ fontSize: 'clamp(3rem, 7vw, 6rem)' }}>
-							<span className='block text-foreground mb-2'>Build</span>
+							<span className='block text-foreground mb-2'>Small Business Software </span>
 
 							<div className='relative h-[1.1em] mb-2 overflow-hidden flex items-center'>
 								<AnimatePresence mode='wait'>
