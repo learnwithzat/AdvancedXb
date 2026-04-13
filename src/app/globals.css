@@ -65,118 +65,107 @@
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) * 1.5);
 }
-
 :root {
-	/* Premium Luxury System — Midnight Indigo & Gold */
-	--background: 260 30% 98%; /* Soft silk white */
-	--foreground: 262 40% 10%; /* Deep midnight charcoal */
+	/* New Theme — Dark Blue + Dark Green + White */
+	--background: 210 40% 98%; /* clean white */
+	--foreground: 210 40% 8%; /* near black */
 
-	/* Accent: Royal Indigo — primary brand color */
-	--accent-purple-light: 262 70% 85%;
-	--accent-purple: 262 70% 50%;
-	--accent-purple-dark: 262 70% 30%;
+	/* Primary = Dark Blue */
+	--primary: 215 80% 45%;
+	--primary-foreground: 0 0% 100%;
 
-	/* Accent: Premium Gold — replacing steel */
-	--accent-pink-light: 45 93% 85%;
-	--accent-pink: 45 93% 55%;
-	--accent-pink-dark: 45 93% 35%;
+	/* Secondary = Soft Green */
+	--secondary: 160 40% 92%;
+	--secondary-foreground: 210 40% 8%;
 
-	/* Accent: Electric Blue — for tech highlights */
-	--accent-blue-light: 195 90% 85%;
-	--accent-blue: 195 90% 55%;
-	--accent-blue-dark: 195 90% 35%;
+	/* Accent = Dark Green */
+	--accent: 160 70% 35%;
+	--accent-foreground: 0 0% 100%;
 
-	/* Supporting accents */
-	--accent-teal: 170 80% 45%;
+	/* Supporting colors */
+	--accent-blue-light: 210 80% 85%;
+	--accent-blue: 215 80% 45%;
+	--accent-blue-dark: 215 80% 25%;
+
+	--accent-teal: 160 60% 40%;
 	--accent-orange: 25 95% 55%;
 	--accent-yellow: 48 95% 60%;
 
-	/* Neutral Tones — warm luxury leaning */
-	--neutral-light: 260 10% 90%;
-	--neutral: 262 10% 50%;
-	--neutral-dark: 262 15% 15%;
+	/* Neutral */
+	--neutral-light: 210 20% 92%;
+	--neutral: 210 15% 50%;
+	--neutral-dark: 210 20% 15%;
 
-	--card: 260 30% 100%;
-	--card-foreground: 262 40% 10%;
+	/* UI */
+	--card: 0 0% 100%;
+	--card-foreground: 210 40% 8%;
 
-	--primary: 262 70% 50%; /* Royal Indigo */
-	--primary-foreground: 0 0% 100%;
-
-	--secondary: 260 20% 95%; /* Champagne / Lavender tint */
-	--secondary-foreground: 262 40% 10%;
-
-	--muted: 260 20% 94%;
-	--muted-foreground: 262 10% 45%;
-
-	--accent: 45 93% 55%; /* Gold */
-	--accent-foreground: 0 0% 100%;
+	--muted: 210 20% 94%;
+	--muted-foreground: 210 15% 40%;
 
 	--destructive: 0 72% 55%;
 	--destructive-foreground: 0 0% 100%;
 
-	--border: 262 20% 90%;
-	--input: 262 20% 90%;
-	--ring: 262 70% 50%;
+	--border: 210 20% 88%;
+	--input: 210 20% 88%;
+	--ring: 215 80% 45%;
 
-	--radius: 0.75rem;
-
-	/* Gradient: Indigo → Amethyst → Gold */
-	--gradient-start: 262 70% 50%;
-	--gradient-mid: 280 60% 55%;
-	--gradient-end: 45 93% 55%;
+	/* Gradient: Blue → Green */
+	--gradient-start: 215 80% 45%;
+	--gradient-mid: 200 70% 40%;
+	--gradient-end: 160 70% 35%;
 
 	/* Sidebar */
-	--sidebar: 260 30% 98%;
-	--sidebar-foreground: 262 40% 10%;
-	--sidebar-primary: 262 70% 50%;
+	--sidebar: 210 40% 98%;
+	--sidebar-foreground: 210 40% 8%;
+	--sidebar-primary: 215 80% 45%;
 	--sidebar-primary-foreground: 0 0% 100%;
-	--sidebar-accent: 45 93% 55%;
+	--sidebar-accent: 160 70% 35%;
 	--sidebar-accent-foreground: 0 0% 100%;
-	--sidebar-border: 262 20% 90%;
-	--sidebar-ring: 262 70% 50%;
+	--sidebar-border: 210 20% 88%;
+	--sidebar-ring: 215 80% 45%;
 }
-
 .dark {
-	--background: 265 40% 5%; /* Deep midnight purple */
-	--foreground: 210 20% 94%; /* Ice white */
+	--background: 215 50% 8%; /* deep dark blue */
+	--foreground: 0 0% 95%; /* white */
 
-	--card: 265 40% 8%;
-	--card-foreground: 210 20% 94%;
+	--card: 215 50% 10%;
+	--card-foreground: 0 0% 95%;
 
-	--primary: 262 80% 65%;
-	--primary-foreground: 218 22% 8%;
+	--primary: 215 80% 60%;
+	--primary-foreground: 0 0% 100%;
 
-	--secondary: 265 30% 12%;
-	--secondary-foreground: 210 20% 94%;
+	--secondary: 215 30% 15%;
+	--secondary-foreground: 0 0% 95%;
 
-	--muted: 265 30% 15%;
-	--muted-foreground: 262 20% 65%;
+	--accent: 160 70% 40%;
+	--accent-foreground: 0 0% 100%;
 
-	--accent: 45 90% 60%;
-	--accent-foreground: 218 22% 8%;
+	--muted: 215 30% 18%;
+	--muted-foreground: 210 20% 70%;
 
-	--neutral-light: 262 20% 92%;
-	--neutral: 262 20% 68%;
-	--neutral-dark: 262 20% 82%;
+	--neutral-light: 210 20% 85%;
+	--neutral: 210 20% 65%;
+	--neutral-dark: 210 20% 75%;
 
-	--border: 265 30% 15%;
-	--input: 265 30% 15%;
-	--ring: 262 80% 65%;
+	--border: 215 30% 18%;
+	--input: 215 30% 18%;
+	--ring: 215 80% 60%;
 
-	/* Gradient: Indigo → Amethyst → Gold (Luminous) */
-	--gradient-start: 262 80% 65%;
-	--gradient-mid: 280 70% 70%;
-	--gradient-end: 45 90% 65%;
+	/* Gradient: Blue → Green (Dark Mode Glow) */
+	--gradient-start: 215 80% 60%;
+	--gradient-mid: 200 70% 50%;
+	--gradient-end: 160 70% 40%;
 
-	/* Sidebar Dark */
-	--sidebar: 265 40% 5%;
-	--sidebar-foreground: 210 20% 94%;
-	--sidebar-primary: 262 80% 65%;
-	--sidebar-primary-foreground: 218 22% 8%;
-	--sidebar-accent: 45 90% 60%;
-	--sidebar-accent-foreground: 218 22% 8%;
-	--sidebar-border: 265 30% 15%;
-	--sidebar-ring: 262 80% 65%;
+	/* Sidebar */
+	--sidebar: 215 50% 8%;
+	--sidebar-foreground: 0 0% 95%;
+	--sidebar-primary: 215 80% 60%;
+	--sidebar-primary-foreground: 0 0% 100%;
+	--sidebar-accent: 160 70% 40%;
+	--sidebar-accent-foreground: 0 0% 100%;
+	--sidebar-border: 215 30% 18%;
+	--sidebar-ring: 215 80% 60%;
 }
 
 @layer base {
